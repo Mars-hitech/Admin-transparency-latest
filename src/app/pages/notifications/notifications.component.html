@@ -1,0 +1,78 @@
+<nb-card>
+  <nb-card-header>
+
+  </nb-card-header>
+
+  <nb-card-body [nbSpinner]="loading"
+                nbSpinnerStatus="danger"
+                nbSpinnerSize="large"
+                nbSpinnerMessage="Traitement en cours...">
+    <div class="form-row">
+      <div class="form-group text-left">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="createNotification()">
+          Enregistrer une notification
+        </button>
+      </div>
+      <div class="form-group col-md-6 text-center">
+      </div>
+    </div>
+
+    <p>Liste des notifications</p>
+
+    <table class="table table-hover">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Sujet</th>
+        <th scope="col">Description</th>
+        <th scope="col">Type</th>
+        <th scope="col">Concerne</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let notification of notifications; let i = index">
+        <th scope="row">{{(page - 1) * pageSize + i}}</th>
+        <td>{{ notification.subject }}</td>
+        <td>{{ notification.description }}</td>
+        <td>{{ notification.concern_type }}</td>
+        <td>{{ notification.concern.label }}</td>
+        <td>
+          <button type="button" class="btn btn-outline-primary btn-sm"  (click)="edit(notification.id)">
+            <i class="fa fa-edit"></i>
+          </button>
+          <button type="button" class="btn btn-outline-danger btn-sm ml-1" (click)="open(dialog, 'DELETE', notification)">
+            <i class="fa fa-trash-alt"></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination [collectionSize]="data.length" [(page)]="page" [pageSize]="pageSize">
+      </ngb-pagination>
+
+      <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+        <option [ngValue]="20">20 per page</option>
+        <option [ngValue]="40">40 per page</option>
+        <option [ngValue]="60">60 per page</option>
+      </select>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>Dialogue de Confirmation</nb-card-header>
+    <nb-card-body>Voulez vous vraiment effectuer cette action?</nb-card-body>
+    <nb-card-footer>
+        <button type="button" class="btn btn-outline-primary btn-sm w-25"(click)="delete()">Oui</button>
+        <button type="button" class="btn btn-outline-danger btn-sm ml-1 w-25"
+                (click)="ref.close()">Non</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

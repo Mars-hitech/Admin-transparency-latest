@@ -1,0 +1,117 @@
+<div class="row">
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Formulaire d'enregistrement d'un retard</nb-card-header>
+
+      <nb-card-body [formGroup]="retardForm" [nbSpinner]="loading"
+                    nbSpinnerStatus="danger"
+                    nbSpinnerSize="large"
+                    nbSpinnerMessage="Enregistrement en cours...">
+        <nb-alert *ngFor="let error of errors" status="warning" closable (close)="onClose(error)">
+          <strong>Warning!</strong> {{error}}.
+        </nb-alert>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="registration_number">Registration number</label>
+            <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="registration_number"
+                 formControlName="registration_number">
+          </div>
+        </div>
+        <!--<div class="full-name-inputs">-->
+          <!--<div class="form-group col-md-6">-->
+            <!--<label class="label" for="day">Jour</label>-->
+            <!--<select id="day" class="form-control" formControlName="day">-->
+              <!--<option value="monday">Lundi</option>-->
+              <!--<option value="tuesday">Mardi</option>-->
+              <!--<option value="wednesday">Mercredi</option>-->
+              <!--<option value="thursday">Jeudi</option>-->
+              <!--<option value="friday">Vendredi</option>-->
+              <!--<option value="saturday">Samedi</option>-->
+            <!--</select>-->
+          <!--</div>-->
+        <!--</div>-->
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="day">Date</label>
+            <input [nbDatepicker]="datepicker" id="day" class="form-control" nbInput fullWidth
+                   placeholder="" formControlName="day" fieldSize="medium">
+            <nb-datepicker #datepicker></nb-datepicker>
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="arrived_at">Heure d'arrivee</label>
+  
+            <ngb-timepicker id="arrived_at" formControlName="arrived_at" ></ngb-timepicker>        
+               <span >{{this.old_retard.arrived_at}}</span>
+             
+          </div>
+        </div>
+
+        <hr />
+        <div class="form-row">
+          <div class="form-group col-md-6 text-center">
+            <button type="button" class="AppButton btn-yellow w-50"
+                    (click)="cancel()">
+              Annuler</button>
+          </div>
+          <div class="form-group col-md-6 text-center">
+            <button
+              type="button"
+              class="AppButton btn-blue w-50"
+              (click)="save()"
+            >
+              Enregistrer
+            </button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="row">
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Ressources connexes</nb-card-header>
+    
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+              <hr>
+              <label class="label" for="registration_number">Eleves</label>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="matricule"
+                    (keyup)="onKey($event)" value="{{resultat}}" #search>
+
+                   <div class="col-md-12">
+                    <ng-container *ngIf="inptShow">
+                      <div class="show_search">
+                        <ng-container *ngFor="let student of student_search"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show(student.full_name,student.registration_number)"> {{student.full_name}}</p></div>
+                        </ng-container>
+                      </div>
+                    </ng-container>
+                   </div>
+                   <hr>
+            </div>
+          
+          </div>
+        </nb-card>
+      </div>
+
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Relié par des ressources</nb-card-header>
+    
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+             <hr>
+             <hr>
+            </div>
+          
+          </div>
+        </nb-card>
+      </div>
+    </div>
+    
+  </div>
+</div>

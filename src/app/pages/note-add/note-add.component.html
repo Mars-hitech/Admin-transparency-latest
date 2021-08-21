@@ -1,0 +1,207 @@
+<div class="row">
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Formulaire d'enregistrement d'une absence</nb-card-header>
+
+      <nb-card-body [formGroup]="noteForm" [nbSpinner]="loading"
+                    nbSpinnerStatus="danger"
+                    nbSpinnerSize="large"
+                    nbSpinnerMessage="Enregistrement en cours...">
+        <nb-alert *ngFor="let error of errors" status="warning" closable (close)="onClose(error)">
+          <strong>Warning!</strong> {{error}}.
+        </nb-alert>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="registration_number">Année scolaire</label>
+            <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="school_year_id"
+                 formControlName="school_year_id">
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="registration_number">Eleve</label>
+            <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="student_id"
+                 formControlName="student_id">
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="registration_number">Matiere</label>
+            <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="matiere_id"
+                 formControlName="matiere_id">
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="registration_number">Sequence</label>
+            <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="sequence_id"
+                 formControlName="sequence_id">
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="registration_number">Type devoir </label>
+            <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="assessment_type"
+                 formControlName="assessment_type_id">
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="registration_number">Note</label>
+            <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="note"
+                 formControlName="note">
+          </div>
+        </div>
+
+        <hr />
+        <div class="form-row">
+          <div class="form-group col-md-6 text-center">
+            <button type="button" class="AppButton btn-yellow w-50"
+                    (click)="cancel()">
+              Annuler</button>
+          </div>
+          <div class="form-group col-md-6 text-center">
+            <button
+              type="button"
+              class="AppButton btn-blue w-50"
+              (click)="save()"
+            >
+              Enregistrer
+            </button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="row">
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Ressources connexes</nb-card-header>
+    
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+              <hr>
+              <label class="label" for="registration_number">Eleves</label>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="matricule"
+                    (keyup)="onKey($event)" value="{{resultat}}" #search>
+
+                   <div class="col-md-12">
+                    <ng-container *ngIf="inptShow">
+                      <div class="show_search">
+                        <ng-container *ngFor="let student of student_search"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show(student.full_name,student.registration_number)"> {{student.full_name}}</p></div>
+                        </ng-container>
+                      </div>
+                    </ng-container>
+                   </div>
+                  
+            </div>
+          
+          </div>
+
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+            
+              <label class="label" for="registration_number">Année scolaire</label>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="matricule"
+                    (keyup)="onKey($event)" value="{{resultat}}" #search>
+
+                   <div class="col-md-12">
+                    <ng-container *ngIf="inptShow">
+                      <div class="show_search">
+                        <ng-container *ngFor="let student of student_search"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show(student.full_name,student.registration_number)"> {{student.full_name}}</p></div>
+                        </ng-container>
+                      </div>
+                    </ng-container>
+                   </div>
+                   
+            </div>
+          
+          </div>
+
+
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+              
+              <label class="label" for="registration_number">Matière</label>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="matricule"
+                    (keyup)="onKey($event)" value="{{resultat}}" #search>
+
+                   <div class="col-md-12">
+                    <ng-container *ngIf="inptShow">
+                      <div class="show_search">
+                        <ng-container *ngFor="let student of student_search"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show(student.full_name,student.registration_number)"> {{student.full_name}}</p></div>
+                        </ng-container>
+                      </div>
+                    </ng-container>
+                   </div>
+                  
+            </div>
+          
+          </div>
+
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+             
+              <label class="label" for="registration_number">Sequence</label>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="matricule"
+                    (keyup)="onKey($event)" value="{{resultat}}" #search>
+
+                   <div class="col-md-12">
+                    <ng-container *ngIf="inptShow">
+                      <div class="show_search">
+                        <ng-container *ngFor="let student of student_search"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show(student.full_name,student.registration_number)"> {{student.full_name}}</p></div>
+                        </ng-container>
+                      </div>
+                    </ng-container>
+                   </div>
+                  
+            </div>
+          
+          </div>
+
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+            
+              <label class="label" for="registration_number">Type de devoir</label>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="matricule"
+                    (keyup)="onKey($event)" value="{{resultat}}" #search>
+
+                   <div class="col-md-12">
+                    <ng-container *ngIf="inptShow">
+                      <div class="show_search">
+                        <ng-container *ngFor="let student of student_search"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show(student.full_name,student.registration_number)"> {{student.full_name}}</p></div>
+                        </ng-container>
+                      </div>
+                    </ng-container>
+                   </div>
+                
+            </div>
+          
+          </div>
+        </nb-card>
+      </div>
+
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Relié par des ressources</nb-card-header>
+    
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+             <hr>
+             <hr>
+            </div>
+          
+          </div>
+        </nb-card>
+      </div>
+    </div>
+    
+  </div>
+</div>

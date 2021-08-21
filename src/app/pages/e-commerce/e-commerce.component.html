@@ -1,0 +1,135 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="float-left">
+        <span class="design-span-title">    
+          <h5 class="desin-titre">Tableau de bord</h5> 
+        </span> 
+    </div>
+    <div class="float-right">
+      <nav aria-label="breadcrumb" class="float-right">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/" ><i class="ion-speedometer"></i> Accueil</a></li>
+         
+          <li class="breadcrumb-item active" aria-current="page">Tableau de bord</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3 col-sm-6 col-xs-12">
+  <nb-flip-card [showToggleButton]="false" [flipped]="flipped">
+    <nb-card-front>
+      <nb-card >
+        <div class="row-table design1">
+          <div class="col-sm-12 card-body ">
+            <div class="row">
+              <div class="col-sm-4">
+                <i class="ion-university design-icon-home"></i>
+              </div>
+              <div class="col-sm-8 text-md-center">
+                <h6>TOTAL DES ÉLÈVES</h6>
+                <h5>{{nbreStudent}}</h5>
+              </div>
+            </div>
+          </div>
+          </div>
+      </nb-card>
+    </nb-card-front>
+
+  </nb-flip-card>
+  </div>
+
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <nb-flip-card [showToggleButton]="false" [flipped]="flipped">
+     <nb-card-front>
+       <nb-card >
+         <div class="row-table design2">
+           <div class="col-sm-12 card-body ">
+             <div class="row">
+               <div class="col-sm-4">
+                 <i class="ion-person-stalker design-icon-home"></i>
+               </div>
+               <div class="col-sm-8 text-md-center">
+                 <h6>TOTAL DES PARENTS</h6>
+                 <h5>{{nbreTutor}}</h5>
+               </div>
+             </div>
+           </div>
+           </div>
+       </nb-card>
+     </nb-card-front>
+   
+   </nb-flip-card>
+   </div>
+
+   <div class="col-md-3 col-sm-6 col-xs-12">
+    <nb-flip-card [showToggleButton]="false" [flipped]="flipped">
+     <nb-card-front>
+       <nb-card >
+         <div class="row-table design3">
+           <div class="col-sm-12 card-body ">
+             <div class="row">
+               <div class="col-sm-4">
+                 <i class="ion-briefcase design-icon-home"></i>
+               </div>
+               <div class="col-sm-8 text-md-center">
+                 <h6>NOMBRE D'ÉCOLES</h6>
+                 <h5>{{nbreSchool}}</h5>
+               </div>
+             </div>
+           </div>
+           </div>
+       </nb-card>
+     </nb-card-front>
+   
+   </nb-flip-card>
+   </div>
+
+   <div class="col-md-3 col-sm-6 col-xs-12">
+    <nb-flip-card [showToggleButton]="false" [flipped]="flipped">
+     <nb-card-front>
+       <nb-card >
+         <div class="row-table design4">
+           <div class="col-sm-12 card-body ">
+             <div class="row">
+               <div class="col-sm-4">
+                 <i class="ion-man design-icon-home"></i>
+               </div>
+               <div class="col-sm-8 text-md-center">
+                 <h6>ENSEIGNANTS</h6>
+                 <h5>{{nbreTeacher}}</h5>
+               </div>
+             </div>
+           </div>
+           </div>
+       </nb-card>
+     </nb-card-front>
+   
+   </nb-flip-card>
+   </div>
+   <div class="col-md-3 col-sm-6 col-xs-12">
+    <nb-flip-card [showToggleButton]="false" [flipped]="flipped">
+     <nb-card-front>
+       <nb-card >
+         <div class="row-table design5">
+           <div class="col-sm-12 card-body ">
+             <div class="row">
+               <div class="col-sm-4">
+                 <i class="ion-chatbubbles design-icon-home"></i>
+               </div>
+               <div class="col-sm-8 text-md-center">
+                 <h6>TOUTES LES NOTIFICATION</h6>
+                 <h5></h5>
+               </div>
+             </div>
+           </div>
+           </div>
+       </nb-card>
+     </nb-card-front>
+   
+   </nb-flip-card>
+   </div>
+</div>
+

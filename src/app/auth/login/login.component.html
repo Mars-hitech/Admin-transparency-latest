@@ -1,0 +1,93 @@
+<div class="form-bloc" [nbSpinner]="loading"
+     nbSpinnerStatus="danger"
+     nbSpinnerSize="large"
+     nbSpinnerMessage="Veuillez patienter...">
+     <img src="assets/images/logo.png" alt="" class="img-fluid mb-4 login-img-logo">
+  <h1 id="title" class="title">Login</h1>
+ 
+
+  <nb-alert *ngIf="showMessages.error && errors?.length && !submitted" outline="danger" role="alert">
+    <p class="alert-title"><b>Oh snap!</b></p>
+    <ul class="alert-message-list">
+      <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
+    </ul>
+  </nb-alert>
+
+  <nb-alert *ngIf="showMessages.success && messages?.length && !submitted" outline="success" role="alert">
+    <p class="alert-title"><b>Hooray!</b></p>
+    <ul class="alert-message-list">
+      <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
+    </ul>
+  </nb-alert>
+
+  <form (ngSubmit)="sign_in()" #form="ngForm" aria-labelledby="title">
+
+    <div class="form-control-group">
+      <label class="label" for="input-phone_number">Phone number:</label>
+      
+      <input nbInput
+             
+             [(ngModel)]="user.phone_number"
+             #phone_number="ngModel"
+             name="phone_number"
+             type="tel"
+             id="input-phone_number"
+             placeholder="PhoneNumber"
+             autofocus
+             [status]="phone_number.dirty ? (phone_number.invalid  ? 'danger' : 'success') : ''"
+             [required]="getConfigValue('forms.validation.phone_number.required')"
+             [attr.aria-invalid]="phone_number.invalid && phone_number.touched ? true : null" class="design-form-login">
+      <ng-container *ngIf="phone_number.invalid && phone_number.touched">
+        <p class="error-message" *ngIf="phone_number.errors?.required">
+          PhoneNumber is required!
+        </p>
+        <p class="error-message" *ngIf="phone_number.errors?.pattern">
+          PhoneNumber should be the real one!
+        </p>
+      </ng-container>
+    </div>
+
+    <div class="form-control-group">
+      <label class="label" for="input-pin_code">Pin Code:</label>
+      <input nbInput
+             
+             [(ngModel)]="user.pin_code"
+             #pin_code="ngModel"
+             name="pin_code"
+             type="password"
+             id="input-pin_code"
+             placeholder="Pin Code"
+             [status]="pin_code.dirty ? (pin_code.invalid  ? 'danger' : 'success') : ''"
+             [required]="true"
+             [minlength]="6"
+             [maxlength]="6"
+             [attr.aria-invalid]="pin_code.invalid && pin_code.touched ? true : null" class="design-form-login">
+      <ng-container *ngIf="pin_code.invalid && pin_code.touched ">
+        <p class="error-message" *ngIf="pin_code.errors?.required">
+          Pin Code is required!
+        </p>
+        <p class="error-message" *ngIf="pin_code.errors?.minlength || pin_code.errors?.maxlength">
+          Pin Code should contains 6 characters
+        </p>
+      </ng-container>
+    </div>
+
+    <div class="form-control-group accept-group">
+      <nb-checkbox name="rememberMe" [(ngModel)]="user.rememberMe" *ngIf="rememberMe">Remember me</nb-checkbox>
+      <a class="forgot-pin_code" routerLink="../request-pin_code">Forgot Pin Code?</a>
+    </div>
+
+    <button nbButton
+            fullWidth
+            status="success"
+            [disabled]="submitted || !form.valid"
+            [class.btn-pulse]="submitted">
+      Log In
+    </button>
+  </form>
+</div>
+
+
+<!--<section class="another-action" aria-label="Register">-->
+  <!--Don't have an account? <a class="text-link" routerLink="../register">Register</a>-->
+<!--</section>-->

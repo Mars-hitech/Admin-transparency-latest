@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="col-lg-10" [nbSpinner]="loading"
+       nbSpinnerStatus="danger"
+       nbSpinnerSize="large"
+       nbSpinnerMessage="Traitement en cours...">
+    <nb-card>
+      <nb-card-header>Formulaire d'enregistrement des notes des eleves d'une classe</nb-card-header>
+
+      <nb-card-body [formGroup]="noteForm">
+        <nb-alert *ngFor="let error of errors" status="warning" closable (close)="onClose(error)">
+          <strong>Warning!</strong> {{error}}.
+        </nb-alert>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-6">
+            <label class="label" for="classe_id">Classe</label>
+            <select id="classe_id" class="form-control"  formControlName="classe_id">
+              <option value="{{c.id}}" *ngFor="let c of classes">{{c.name}}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="label" for="matiere_id">Matiere</label>
+            <select id="matiere_id" class="form-control"  formControlName="matiere_id">
+              <option value="{{m.id}}" *ngFor="let m of matieres">{{m.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-6">
+            <label class="label" for="sequence_id">sequence</label>
+            <select id="sequence_id" class="form-control"  formControlName="sequence_id">
+              <option value="{{s.id}}" *ngFor="let s of sequences">{{s.name}}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="label" for="assessment_type_id">Type d'evaluation</label>
+            <select id="assessment_type_id" class="form-control"  formControlName="assessment_type_id">
+              <option value="{{a.id}}" *ngFor="let a of assessment_types">{{a.name}}</option>
+            </select>
+          </div>
+        </div>
+
+        <hr />
+        <div class="form-row">
+          <div class="form-group col-md-6 text-left">
+            <button
+              type="button"
+              class="AppButton btn-blue w-50"
+              (click)="findStudents()">
+              Afficher la liste des etudiants
+            </button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+    <div>
+      <div>Liste des eleves</div>
+      <table class="table smal_table_ligne">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First name</th>
+          <th scope="col">Last name</th>
+          <th scope="col">Matricule</th>
+          <th scope="col">Note</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let s of students; index as i">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{s.first_name}}</td>
+          <td>{{s.last_name}}</td>
+          <td>{{s.registration_number}}</td>
+          <td><input type="number" id="note_{{i+1}}" class="form-control" nbInput fullWidth placeholder="10"
+                     (keydown.enter)="saveNote($event.target.value, s.id, i+1)"
+                     value="{{associate_note[s.registration_number]}}">
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

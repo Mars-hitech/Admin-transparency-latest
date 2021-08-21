@@ -1,0 +1,118 @@
+<div class="row">
+  <div class="col-lg-6" [nbSpinner]="loading"
+       nbSpinnerStatus="danger"
+       nbSpinnerSize="large"
+       nbSpinnerMessage="Traitement en cours...">
+    <nb-card>
+      <nb-card-header>Associer un parent a un eleve</nb-card-header>
+
+      <nb-card-body [formGroup]="studentForm">
+        <nb-alert *ngFor="let error of errors" status="warning" closable (close)="onClose(error)">
+          <strong>Warning!</strong> {{error}}.
+        </nb-alert>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="registration_number">Registration number</label>
+            <input type="text" id="registration_number" class="form-control" nbInput  fullWidth  placeholder="matricule"
+                   formControlName="registration_number">
+          </div>
+          <div class="form-group col-md-12">
+            <label class="label" for="tutor_id">Choose the tutor in the list</label>
+            <select id="tutor_id" class="form-control"  formControlName="tutor_id">
+              <option value="{{t.id}}" *ngFor="let t of tutors">{{t.first_name}} {{t.last_name}}</option>
+            </select>
+          </div>
+        </div>
+        <hr />
+        <div *ngIf="student">
+          <br>
+          <div class="row">
+            <div class="col-md-6">First name</div>
+            <div class="col-md-6"><b>{{student.first_name}}</b></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">Last name</div>
+            <div class="col-md-6"><b>{{student.last_name}}</b></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">Birth Place</div>
+            <div class="col-md-6"><b>{{student.birth_place}}</b></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">Photo</div>
+            <div class="col-md-6">
+              <img src="{{student.picture}}" style="width: 150px; height: auto;" alt="">
+            </div>
+          </div>
+        </div>
+        <br>
+        <hr />
+        <div class="form-row">
+          <div class="form-group col-md-6 text-center">
+            <button
+              type="button"
+              class="AppButton btn-blue w-50"
+              (click)="findStudent()">
+              Retrouver l'eleve
+            </button>
+          </div>
+          <div class="form-group col-md-6 text-center">
+            <button
+              type="button"
+              class="AppButton btn-blue w-50"
+              [disabled]="student == null"
+              (click)="enregistrer()">
+              Update student
+            </button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="row">
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Ressources connexes</nb-card-header>
+    
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+              <hr>
+              <label class="label" for="registration_number">Eleves</label>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="matricule"
+                    (keyup)="onKey($event)" value="{{resultat}}" #search>
+
+                   <div class="col-md-12">
+                    <ng-container *ngIf="inptShow">
+                      <div class="show_search">
+                        <ng-container *ngFor="let student of student_search"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show(student.full_name,student.registration_number)"> {{student.full_name}}</p></div>
+                        </ng-container>
+                      </div>
+                    </ng-container>
+                   </div>
+                   <hr>
+            </div>
+          
+          </div>
+        </nb-card>
+      </div>
+
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Relié par des ressources</nb-card-header>
+    
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+             <hr>
+             <hr>
+            </div>
+          
+          </div>
+        </nb-card>
+      </div>
+    </div>
+    
+  </div>
+</div>

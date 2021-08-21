@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col-lg-10" [nbSpinner]="loading"
+       nbSpinnerStatus="danger"
+       nbSpinnerSize="large"
+       nbSpinnerMessage="Traitement en cours...">
+    <nb-card>
+      <nb-card-header>Gestion des moyennes trimestrielles d'une classe</nb-card-header>
+
+      <nb-card-body [formGroup]="moyenneForm">
+        <nb-alert *ngFor="let error of errors" status="warning" closable (close)="onClose(error)">
+          <strong>Warning!</strong> {{error}}.
+        </nb-alert>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-6">
+            <label class="label" for="classe_id">Classe</label>
+            <select id="classe_id" class="form-control"  formControlName="classe_id">
+              <option value="{{c.id}}" *ngFor="let c of classes">{{c.name}}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="label" for="matiere_id">Matiere</label>
+            <select id="matiere_id" class="form-control"  formControlName="matiere_id">
+              <option value="{{m.id}}" *ngFor="let m of matieres">{{m.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-6">
+            <label class="label" for="trimestre_id">trimestre</label>
+            <select id="trimestre_id" class="form-control"  formControlName="trimestre_id">
+              <option value="{{s.id}}" *ngFor="let s of trimestres">{{s.name}}</option>
+            </select>
+          </div>
+        </div>
+
+        <hr />
+        <div class="form-row">
+          <div class="form-group col-md-6 text-center">
+            <button
+              type="button"
+              class="AppButton btn-blue w-50"
+              (click)="findStudents()">
+              Generer les resultats
+            </button>
+          </div>
+          <div class="form-group col-md-6 text-center">
+            <button
+              type="button"
+              class="AppButton btn-blue w-50"
+              (click)="orderMoyenne()">
+              Generer le classement
+            </button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+    <div>
+      <div>Liste des eleves</div>
+      <table class="table smal_table_ligne">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First name</th>
+          <th scope="col">Last name</th>
+          <th scope="col">Matricule</th>
+          <th scope="col">Moyenne</th>
+          <th scope="col">Rang</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let mt of moyenne_trimestrielles; index as i">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{mt.student.first_name}}</td>
+          <td>{{mt.student.last_name}}</td>
+          <td>{{mt.student.registration_number}}</td>
+          <td><b>{{mt.moyenne}}</b></td>
+          <td>{{mt.rang}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

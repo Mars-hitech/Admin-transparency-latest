@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col-lg-10">
+    <nb-card>
+      <nb-card-header>Formulaire d'enregistrement d'un programme</nb-card-header>
+
+      <nb-card-body [formGroup]="programForm" [nbSpinner]="loading"
+                    nbSpinnerStatus="danger"
+                    nbSpinnerSize="large"
+                    nbSpinnerMessage="Enregistrement en cours...">
+        <nb-alert *ngFor="let error of errors" status="warning" closable (close)="onClose(error)">
+          <strong>Warning!</strong> {{error}}.
+        </nb-alert>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-6">
+            <label class="label" for="classe_id">Classe</label>
+            <select id="classe_id" class="form-control"  formControlName="classe_id">
+              <option value="{{c.id}}" *ngFor="let c of classes">{{c.name}}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="label" for="matiere_id">Matiere</label>
+            <select id="matiere_id" class="form-control"  formControlName="matiere_id">
+              <option value="{{m.id}}" *ngFor="let m of matieres">{{m.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-6">
+            <label class="label" for="time_slot_id">Plage horaire</label>
+            <select id="time_slot_id" class="form-control"  formControlName="time_slot_id">
+              <option value="{{t.id}}" *ngFor="let t of time_slots">{{ t.day }} - {{t.from_hour}} à {{t.to_hour}}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="label" for="teacher_id">Enseignant</label>
+            <select id="teacher_id" class="form-control"  formControlName="teacher_id">
+              <option value="{{t.id}}" *ngFor="let t of teachers">{{t.first_name}} {{t.last_name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-6">
+            <label class="label" for="coef">Coefficient</label>
+            <input type="text" id="coef" class="form-control" nbInput fullWidth placeholder="coef"
+                   formControlName="coef">
+          </div>
+        </div>
+
+        <hr />
+        <div class="form-row">
+          <div class="form-group col-md-6 text-center">
+            <button type="button" class="AppButton btn-yellow w-50"
+                    (click)="cancel()">
+              Annuler</button>
+          </div>
+          <div class="form-group col-md-6 text-center">
+            <button
+              type="button"
+              class="AppButton btn-blue w-50"
+              (click)="save()"
+            >
+              Enregistrer
+            </button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

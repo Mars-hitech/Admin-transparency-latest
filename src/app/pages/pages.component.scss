@@ -1,0 +1,150 @@
+@import '../@theme/styles/themes';
+
+@include nb-install-component() {
+  ::ng-deep router-outlet + * {
+    display: block;
+    animation: fade 1s;
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+
+.SitebarLeft {
+
+  position: relative;
+  .header {
+    width: 206px;
+    min-width: 206px;
+    height: 70px;
+    background: #3e5066;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    img {
+      margin-right: 11px;
+      width: 28px;
+    }
+    .title {
+      font-size: 12px;
+      line-height: 20px;
+      color: white;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+  }
+
+
+
+  .menu-device {
+    width: 206px;
+    min-width: 206px;
+    min-height: calc(100vh - 70px);
+    height: 100%;
+    background: #fdfdfe;
+    border-right: 1px solid #edeef0;
+    ul, li {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    ul {
+      li {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 20px;
+        height: 50px;
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        .arrow {
+          margin-right: 15px;
+          color: #9ea6b8;
+          .fa-chevron-up {
+            display: none;
+          }
+        }
+        a {
+          text-decoration: none;
+          padding-left: 32px;
+          color: #3e5066;
+          // display: flex
+          width: 100%;
+          height: 50px;
+          line-height: 50px;
+          font-weight: 500;
+          font-size: 14px;
+          i {
+            color: #9ea6b8;
+          }
+        }
+        &.active {
+          color: #01b6eb;
+          a {
+            color: #01b6eb;
+            i {
+              color: #01b6eb;
+            }
+          }
+          .arrow {
+            color: #01b6eb;
+            .fa-chevron-up {
+              display: block;
+            }
+            .fa-chevron-down {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .sub-menu {
+        display: none;
+        &.active {
+          display: block;
+        }
+        li {
+          font-style: normal;
+          font-weight: normal;
+          font-size: 12px;
+          line-height: 20px;
+          display: flex;
+          &:hover {
+            background: #01b6eb;
+            a {
+              color: white;
+            }
+          }
+          &.active {
+            background: #01b6eb;
+            a {
+              color: white;
+            }
+          }
+          a {
+            padding-left: 30px;
+            color: #9ea6b8;
+            display: flex;
+            flex: 1;
+            height: 50px;
+            align-items: center;
+          }
+        }
+
+      }
+    }
+
+  }
+}
+
