@@ -39,6 +39,7 @@ export class NotificationComponent implements OnInit {
       this.loading = false;
       console.log(error);
     });
+    
   }
 
   ngOnInit() {
@@ -55,6 +56,8 @@ export class NotificationComponent implements OnInit {
             this.notificationForm.controls['subject'].setValue(this.old_event.subject);
             this.notificationForm.controls['description'].setValue(this.old_event.description);
             this.notificationForm.controls['event_date'].setValue(this.old_event.event_date);
+            this.notificationForm.controls['status'].setValue(this.old_event.status);
+            
             this.loading = false;
           }, (err) => {
             console.log(err);
@@ -288,6 +291,7 @@ export class NotificationComponent implements OnInit {
       type: ['', Validators.required],
       description: ['', Validators.required],
       event_date: ['', Validators.required],
+      status: [''],
       classe_id: [''],
       matricule: [''],
     });

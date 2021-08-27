@@ -100,17 +100,32 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Conversations',
     icon: 'message-square-outline',
     children: [
-      /*
       {
-        title: 'Liste des Notifications',
+        title: 'conversations',
+        icon: 'calendar-outline',
+        link: '/pages/chat-list',
+      },
+      {
+        title: 'Personnes dans le tchat',
+        icon: 'calendar-outline',
+        link: '/pages/chat-user-list',
+      },
+      {
+        title: 'Messages',
+        icon: 'calendar-outline',
+        link: '/pages/message-list',
+      },
+      {
+        title: 'news',
+        icon: 'calendar-outline',
+        link: '/pages/news-list',
+      },
+      {
+        title: 'Evenements',
         icon: 'calendar-outline',
         link: '/pages/notifications',
       },
-      {
-        title: 'Nouvelle Notification',
-        link: '/pages/add-notification',
-        icon: 'person-add-outline',
-      },*/
+    
     ],
   },
  
@@ -119,10 +134,30 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Administration',
     icon: 'settings-outline',
     children: [
-      /*
+      
       {
-        title: 'Enseignants',
-        link: '/pages/teachers',
+        title: 'Pays',
+        link: '/pages/pays-list',
+        icon: 'link-outline',
+      },
+      {
+        title: 'Ville',
+        link: '/pages/ville-list',
+        icon: 'link-outline',
+      },
+      {
+        title: 'School',
+        link: '/pages/school-list',
+        icon: 'link-outline',
+      },
+      {
+        title: 'Année scolaire',
+        link: '/pages/school-year-list',
+        icon: 'link-outline',
+      },
+      {
+        title: 'plage horaire',
+        link: '/pages/time-slot-list',
         icon: 'link-outline',
       },
       {
@@ -149,43 +184,55 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Programme',
         link: '/pages/programs',
         icon: 'trash',
-      },*/
+      },
     ],
   },
   {
     title: 'Comptes',
     icon: 'person-outline',
     children: [
-     /* {
+      {
+        title: 'utilisateurs',
+        link: '/pages/user-list',
+        icon: 'link-outline',
+      },
+       {
+        title: 'personnes',
+        link: '/pages/personne-list',
+        icon: 'link-outline',
+      },
+      {
+        title: 'tuteurs',
+        link: '/pages/tuteurs-list',
+        icon: 'link-outline',
+      },
+      {
         title: 'Enseignants',
         link: '/pages/teachers',
         icon: 'link-outline',
       },
-      {
-        title: 'Classes',
-        link: '/pages/classes',
+        {
+        title: 'Roles',
+        link: '/pages/roles-list',
+        icon: 'link-outline',
+      },
+      
+        {
+        title: 'Roles utilisateurs',
+        link: '/pages/roles-user-list',
         icon: 'link-outline',
       },
       {
-        title: 'Sequence',
-        link: '/pages/sequences',
-        icon: 'credit-card-outline',
+        title: 'Permissions',
+        link: '/pages/permission-list',
+        icon: 'link-outline',
       },
       {
-        title: 'Type d\'evaluation',
-        link: '/pages/assessment_types',
-        icon: 'shield-outline',
+        title: 'Permissions roles',
+        link: '/pages/permission-role-list',
+        icon: 'link-outline',
       },
-      {
-        title: 'Matiere',
-        link: '/pages/matieres',
-        icon: 'trash',
-      },
-      {
-        title: 'Programme',
-        link: '/pages/programs',
-        icon: 'trash',
-      },*/
+     
     ],
   },
 ];

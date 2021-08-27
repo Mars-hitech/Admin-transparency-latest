@@ -13,7 +13,7 @@
           type="button"
           class="btn btn-primary"
           (click)="createNotification()">
-          Enregistrer une notification
+          <i class="ion-plus"></i> AJouter
         </button>
       </div>
       <div class="form-group col-md-6 text-center">
@@ -30,23 +30,37 @@
         <th scope="col">Description</th>
         <th scope="col">Type</th>
         <th scope="col">Concerne</th>
+        <th scope="col">status</th>
         <th scope="col">Action</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let notification of notifications; let i = index">
-        <th scope="row">{{(page - 1) * pageSize + i}}</th>
+        <th scope="row">{{notification.id}}</th>
         <td>{{ notification.subject }}</td>
         <td>{{ notification.description }}</td>
         <td>{{ notification.concern_type }}</td>
         <td>{{ notification.concern.label }}</td>
+        <td>{{ notification.status }}</td>
         <td>
-          <button type="button" class="btn btn-outline-primary btn-sm"  (click)="edit(notification.id)">
-            <i class="fa fa-edit"></i>
-          </button>
-          <button type="button" class="btn btn-outline-danger btn-sm ml-1" (click)="open(dialog, 'DELETE', notification)">
-            <i class="fa fa-trash-alt"></i>
-          </button>
+        
+
+
+          <div class="buttons-row design-btn-action">
+            <button  type="button"
+            class="btn btn-info" hero (click)="show(notification.id)">
+              <i class="ion-search"></i> 
+            </button>
+            <button  type="button"
+            class="btn btn-warning" hero (click)="edit(notification.id)">
+              <i class="ion-edit text-white"></i> 
+            </button>
+            <button  type="button"
+            class="btn btn-danger" hero (click)="open(dialog, notification)">
+              <i class="ion-trash-a"></i> 
+            </button>
+          
+          </div>
         </td>
       </tr>
       </tbody>

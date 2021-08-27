@@ -1,12 +1,15 @@
+
+
+
 <div class="row">
   <div class="col-sm-12">
     <div class="float-left">
   
       <span class="design-span-title">    
-        <span class="desin-titre">Elève</span> 
-        <button type="button" class="btn btn-icon btn-primary" [routerLink]="['/pages/student-add']"><i class="ion-plus"></i></button>
+        <span class="desin-titre">inscrit</span> 
+        <button type="button" class="btn btn-icon btn-primary"  (click)="createAbsent()"><i class="ion-plus"></i></button>
      
-        <button type="button" class="btn btn-icon btn-success" ><i class="ion-edit"></i></button>
+        <button type="button" class="btn btn-icon btn-success" (click)="edit(old_student.id)" ><i class="ion-edit"></i></button>
         
       </span>
      
@@ -15,7 +18,7 @@
       <nav aria-label="breadcrumb" class="float-right">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a routerLink="/"><i class="feather icon-crosshair"></i>Accueil</a></li>
-          <li class="breadcrumb-item"><a href="javascript:">Elève</a></li>
+          <li class="breadcrumb-item"><a href="javascript:">inscrit</a></li>
           <li class="breadcrumb-item active" aria-current="page">Details</li>
         </ol>
       </nav>
@@ -24,6 +27,7 @@
     
   </div>
 </div>
+
 
 <div class="row">
   <div class="col-lg-6">
@@ -40,53 +44,21 @@
           
           </tr>
           <tr>
-            <td>matricule</td>
+            <td>Année scolaire</td>
             <td>{{old_student.registration_number}}</td>
         
           </tr>
           <tr>
-            <td>nom</td>
+            <td>élève</td>
             <td>{{old_student.first_name}}</td>
            
           </tr>
           <tr>
-            <td>prenom</td>
+            <td>classe</td>
             <td>{{old_student.last_name}}</td>
            
           </tr>
-          <tr>
-            <td>sexe</td>
-            <td>{{old_student.gender}}</td>
-           
-          </tr>
-          <tr>
-            <td>Lieu de naissance</td>
-            <td>{{old_student.birth_place}}</td>
-           
-          </tr>
-          <tr>
-            <td>date naissance</td>
-            <td>{{old_student.birth_date}}</td>
-           
-          </tr>
-          <tr>
-            <td>picture</td>
-            <td>  <img [src]="old_student.picture" class="mr-2" style="width: 20px"></td>
-           
-          </tr>
-          <tr>
-            <td>Telephone du tuteur</td>
-            <td>{{old_student.tutor_phone_number}}</td>
-           
-          </tr>
-          <tr>
-            <td>Tuteur</td>
-            <td>{{old_student.tutor_id}} 
-              <span *ngIf="old_student.tutor" class="text-primary">( {{old_student.tutor.first_name}} ) </span>
-              <span *ngIf="!old_student.tutor">(-) </span>
-              </td>
-           
-          </tr>
+         
           <tr>
             <td>cree le</td>
             <td>{{old_student.created_at}}</td>
@@ -97,24 +69,11 @@
             <td>{{old_student.updated_at}}</td>
            
           </tr>
+        
+          
           <tr>
-            <td>page_student.full_name</td>
-            <td>{{old_student.full_name}}</td>
-           
-          </tr>
-          <tr>
-            <td>page_student.label</td>
-            <td>{{old_student.label}}</td>
-           
-          </tr>
-          <tr>
-            <td>page_student.current_inscription</td>
-            <td></td>
-           
-          </tr>
-          <tr>
-            <td>page_student.classe</td>
-            <td></td>
+            <td>eleve</td>
+            <td>{{old_student.updated_at}}</td>
            
           </tr>
           </tbody>

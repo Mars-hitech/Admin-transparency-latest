@@ -417,4 +417,10 @@ if(this.resultat_id){
 }
 
 }
+
+edit(id_: string) {
+  this.router.navigate(['/pages/student-add/' + id_], {
+    replaceUrl: true,
+  });
+}
 }

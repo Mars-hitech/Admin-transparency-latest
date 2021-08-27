@@ -37,12 +37,23 @@
         <td>{{ classe.code}}</td>
         <td>{{ classe.name }}</td>
         <td>
-          <button type="button" class="btn btn-outline-primary btn-sm" (click)="edit(classe.id)">
-            <i class="fa fa-check-circle"></i> Modifier
-          </button>
-          <button type="button" class="btn btn-outline-danger btn-sm ml-1" (click)="open(dialog, classe)">
-            <i class="ion-close-circled"></i> Supprimer
-          </button>
+        
+
+          <div class="buttons-row design-btn-action">
+            <button  type="button"
+            class="btn btn-info" hero (click)="show(classe.id)">
+              <i class="ion-search"></i> 
+            </button>
+            <button  type="button"
+            class="btn btn-warning" hero (click)="edit(classe.id)">
+              <i class="ion-edit text-white"></i> 
+            </button>
+            <button  type="button"
+            class="btn btn-danger" hero (click)="open(dialog, classe)">
+              <i class="ion-trash-a"></i> 
+            </button>
+          
+          </div>
         </td>
       </tr>
       </tbody>

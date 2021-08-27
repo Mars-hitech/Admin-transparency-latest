@@ -6,7 +6,7 @@
         <span class="desin-titre">Elève</span> 
         <button type="button" class="btn btn-icon btn-primary" [routerLink]="['/pages/student-add']"><i class="ion-plus"></i></button>
      
-        <button type="button" class="btn btn-icon btn-success" ><i class="ion-edit"></i></button>
+        <button type="button" class="btn btn-icon btn-success" (click)="edit(old_student.id)" ><i class="ion-edit"></i></button>
         
       </span>
      

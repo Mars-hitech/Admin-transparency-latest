@@ -11,6 +11,7 @@ export class ApiService {
   public Country: any = this.restangular.service('countries').withHttpConfig({ cache: true });
   public Person: any = this.restangular.service('people');
   public Student: any = this.restangular.service('students');
+  public RoleUser: any = this.restangular.service('role_users');
   public Tutor: any = this.restangular.service('tutors');
   public Absent: any = this.restangular.service('absents');
   public Retard: any = this.restangular.service('retards');
@@ -27,7 +28,14 @@ export class ApiService {
   public Program: any = this.restangular.service('programmers').withHttpConfig({ cache: true });
   public Note: any = this.restangular.service('notes').withHttpConfig({ cache: true });
   public Event: any = this.restangular.service('events').withHttpConfig({ cache: true });
+  public News: any = this.restangular.service('news').withHttpConfig({ cache: true });
+  public Message: any = this.restangular.service('messages').withHttpConfig({ cache: true });
+  public ChatUser: any = this.restangular.service('chat_users').withHttpConfig({ cache: true });
   public Inscrit: any = this.restangular.service('inscrits').withHttpConfig({ cache: true });
+  public Chat: any = this.restangular.service('chats').withHttpConfig({ cache: true });
+  public Role: any = this.restangular.service('roles').withHttpConfig({ cache: true });
+  public Permission: any = this.restangular.service('permissions').withHttpConfig({ cache: true });
+  public PermissionRole: any = this.restangular.service('permission_roles').withHttpConfig({ cache: true });
   public MoyenneSequentielle: any = this.restangular.service('moyenne_sequentielles');
   public MoyenneTrimestrielle: any = this.restangular.service('moyenne_trimestrielles');
   public MoyenneAnnuelle: any = this.restangular.service('moyenne_annuelles');

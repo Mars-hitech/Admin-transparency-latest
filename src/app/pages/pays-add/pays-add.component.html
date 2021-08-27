@@ -1,0 +1,204 @@
+<div class="row">
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Formulaire d'enregistrement news</nb-card-header>
+
+      <nb-card-body [formGroup]="countryForm" [nbSpinner]="loading"
+                    nbSpinnerStatus="danger"
+                    nbSpinnerSize="large"
+                    nbSpinnerMessage="Enregistrement en cours...">
+        <nb-alert *ngFor="let error of errors" status="warning" closable (close)="onClose(error)">
+          <strong>Warning!</strong> {{error}}.
+        </nb-alert>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">capital</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="subject"
+                 formControlName="capital">
+          </div>
+        </div>
+
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">citoyenneté</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="subject"
+                 formControlName="citizenship">
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">code du pays</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="subject"
+                 formControlName="country_code">
+          </div>
+        </div>
+
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">monnaie</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="subject"
+                 formControlName="currency">
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">code de la monnaie</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="subject"
+                 formControlName="currency_code">
+          </div>
+        </div>
+
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">sub unit monnaie</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="subject"
+                 formControlName="currency_sub_unit">
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">symbole monnetaire</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="subject"
+                 formControlName="currency_symbol">
+          </div>
+        </div>
+
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">eea</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="subject"
+                 formControlName="eea">
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">code d'appel</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="subject"
+                 formControlName="calling_code">
+          </div>
+        </div>
+
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">Est couvert</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="subject"
+                 formControlName="is_covered">
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">Est activé</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="subject"
+                 formControlName="is_activated">
+          </div>
+        </div>
+
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">iso_3166_2</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="subject"
+                 formControlName="iso_3166_2">
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">iso_3166_3</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="subject"
+                 formControlName="iso_3166_3">
+          </div>
+        </div>
+
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">nom</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="subject"
+                 formControlName="name">
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">code de la region</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="subject"
+                 formControlName="region_code">
+          </div>
+        </div>
+
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">sub region code</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="subject"
+                 formControlName="sub_region_code">
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">nom complet</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="subject"
+                 formControlName="full_name">
+          </div>
+        </div>
+
+        
+       
+        
+        <hr/>
+
+       
+       
+      
+
+        <hr/>
+        <div class="form-row">
+          <div class="form-group col-md-6 text-center">
+            <button type="button" class="AppButton btn-yellow w-50"
+                    (click)="cancel()">
+              Annuler</button>
+          </div>
+          <div class="form-group col-md-6 text-center">
+            <button
+              type="button"
+              class="AppButton btn-blue w-50"
+              (click)="save()"
+            >
+              Enregistrer
+            </button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="row">
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Ressources connexes</nb-card-header>
+    
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+              <hr>
+           
+                   <hr>
+            </div>
+          
+          </div>
+        </nb-card>
+      </div>
+
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Relié par des ressources</nb-card-header>
+    
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+             <hr>
+             <hr>
+            </div>
+          
+          </div>
+        </nb-card>
+      </div>
+    </div>
+    
+  </div>
+</div>

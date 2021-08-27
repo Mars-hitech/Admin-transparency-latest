@@ -418,7 +418,13 @@ if(this.resultat_id){
 
 }
 createAbsent() {
-  this.router.navigate(['/pages/add-absent'], {
+  this.router.navigate(['/pages/add-retard'], {
+    replaceUrl: true,
+  });
+}
+
+edit(id_: string) {
+  this.router.navigate(['/pages/add-retard/' + id_], {
     replaceUrl: true,
   });
 }

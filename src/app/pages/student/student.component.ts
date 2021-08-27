@@ -82,20 +82,22 @@ export class StudentComponent implements OnInit {
       if (route_params.params.id) {
         console.log(route_params.params.id);
         this.loading = true;
-        this.api.Student.one(route_params.params.id)
-          .get()
-          .subscribe((student) => {
-            console.log(student);
-            this.old_student = student;
+        this.api.Inscrit.one(route_params.params.id)
+          .get({
+            _includes: 'classe,student,school_year',
+          })
+          .subscribe((inscrit) => {
+            console.log(inscrit);
+            this.old_student = inscrit;
            // console.log("test",this.old_student.classe.id);
-            this.studentForm.controls['registration_number'].setValue(this.old_student.registration_number);
-            this.studentForm.controls['first_name'].setValue(this.old_student.first_name);
-            this.studentForm.controls['last_name'].setValue(this.old_student.last_name);
-            this.studentForm.controls['gender'].setValue(this.old_student.gender);
+            this.studentForm.controls['registration_number'].setValue(this.old_student.student.registration_number);
+            this.studentForm.controls['first_name'].setValue(this.old_student.student.first_name);
+            this.studentForm.controls['last_name'].setValue(this.old_student.student.last_name);
+            this.studentForm.controls['gender'].setValue(this.old_student.student.gender);
            // this.studentForm.controls['classe_id'].setValue(this.old_student.classe.name);
-            this.studentForm.controls['birth_date'].setValue(this.old_student.birth_date);
-            this.studentForm.controls['birth_place'].setValue(this.old_student.birth_place);
-            this.studentForm.controls['tutor_phone_number'].setValue(this.old_student.tutor_phone_number);
+            this.studentForm.controls['birth_date'].setValue(this.old_student.student.birth_date);
+            this.studentForm.controls['birth_place'].setValue(this.old_student.student.birth_place);
+            this.studentForm.controls['tutor_phone_number'].setValue(this.old_student.student.tutor_phone_number);
             if (this.old_student.picture) {
               this.getBase64ImageFromURL(this.old_student.picture).subscribe((base64data: any) => {
                 const base64Image = 'data:image/jpg;base64,' + base64data;
@@ -352,13 +354,13 @@ export class StudentComponent implements OnInit {
 
   private createForm() {
     this.studentForm = this._formBuilder.group({
-      registration_number: ['', Validators.required],
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      gender: ['', Validators.required],
-      birth_place: ['', Validators.required],
-      birth_date: ['', Validators.required],
-      tutor_phone_number: ['', Validators.required],
+      registration_number: [''],
+      first_name: [''],
+      last_name: [''],
+      gender: [''],
+      birth_place: [''],
+      birth_date: [''],
+      tutor_phone_number: [''],
       picture: [''],
       classe_id: [''],
     });
@@ -469,4 +471,6 @@ if(this.resultat_id){
 }
 
 }
+
+
 }

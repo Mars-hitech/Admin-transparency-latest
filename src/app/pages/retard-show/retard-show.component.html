@@ -1,12 +1,14 @@
+
+
 <div class="row">
   <div class="col-sm-12">
     <div class="float-left">
   
       <span class="design-span-title">    
-        <span class="desin-titre">Elève</span> 
+        <span class="desin-titre">Retard</span> 
         <button type="button" class="btn btn-icon btn-primary"  (click)="createAbsent()"><i class="ion-plus"></i></button>
      
-        <button type="button" class="btn btn-icon btn-success" ><i class="ion-edit"></i></button>
+        <button type="button" class="btn btn-icon btn-success" (click)="edit(old_student.id)" ><i class="ion-edit"></i></button>
         
       </span>
      
@@ -15,7 +17,7 @@
       <nav aria-label="breadcrumb" class="float-right">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a routerLink="/"><i class="feather icon-crosshair"></i>Accueil</a></li>
-          <li class="breadcrumb-item"><a href="javascript:">absent</a></li>
+          <li class="breadcrumb-item"><a href="javascript:">retard</a></li>
           <li class="breadcrumb-item active" aria-current="page">Details</li>
         </ol>
       </nav>

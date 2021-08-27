@@ -56,7 +56,60 @@ import { RetardShowComponent } from './retard-show/retard-show.component';
 import { InscritShowComponent } from './inscrit-show/inscrit-show.component';
 import { NoteListComponent } from './note-list/note-list.component';
 import { NoteAddComponent } from './note-add/note-add.component';
-
+import { NoteShowComponent } from './note-show/note-show.component';
+import { NewsListComponent } from './news-list/news-list.component';
+import { NewsAddComponent } from './news-add/news-add.component';
+import { NewsShowComponent } from './news-show/news-show.component';
+import { MessageListComponent } from './message-list/message-list.component';
+import { MessageAddComponent } from './message-add/message-add.component';
+import { MessageShowComponent } from './message-show/message-show.component';
+import { ChatUserListComponent } from './chat-user-list/chat-user-list.component';
+import { ChatUserAddComponent } from './chat-user-add/chat-user-add.component';
+import { ChatUserShowComponent } from './chat-user-show/chat-user-show.component';
+import { ChatListComponent } from './chat-list/chat-list.component';
+import { ChatAddComponent } from './chat-add/chat-add.component';
+import { ChatShowComponent } from './chat-show/chat-show.component';
+import { NotificationShowComponent } from './notification-show/notification-show.component';
+import { PaysListComponent } from './pays-list/pays-list.component';
+import { PaysAddComponent } from './pays-add/pays-add.component';
+import { PaysShowComponent } from './pays-show/pays-show.component';
+import { VilleListComponent } from './ville-list/ville-list.component';
+import { VilleAddComponent } from './ville-add/ville-add.component';
+import { VilleShowComponent } from './ville-show/ville-show.component';
+import { SchoolListComponent } from './school-list/school-list.component';
+import { SchoolAddComponent } from './school-add/school-add.component';
+import { SchoolShowComponent } from './school-show/school-show.component';
+import { SchoolYearListComponent } from './school-year-list/school-year-list.component';
+import { SchoolYearAddComponent } from './school-year-add/school-year-add.component';
+import { SchoolYearShowComponent } from './school-year-show/school-year-show.component';
+import { TimeSlotListComponent } from './time-slot-list/time-slot-list.component';
+import { TimeSlotAddComponent } from './time-slot-add/time-slot-add.component';
+import { TimeSlotShowComponent } from './time-slot-show/time-slot-show.component';
+import { ClasseShowComponent } from './classe-show/classe-show.component';
+import { TagInputModule } from 'ngx-chips';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserAddComponent } from './user-add/user-add.component';
+import { UserShowComponent } from './user-show/user-show.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { PersonneListComponent } from './personne-list/personne-list.component';
+import { PersonneAddComponent } from './personne-add/personne-add.component';
+import { PersonneShowComponent } from './personne-show/personne-show.component';
+import { TuteursListComponent } from './tuteurs-list/tuteurs-list.component';
+import { TuteursAddComponent } from './tuteurs-add/tuteurs-add.component';
+import { TuteursShowComponent } from './tuteurs-show/tuteurs-show.component';
+import { RolesListComponent } from './roles-list/roles-list.component';
+import { RolesAddComponent } from './roles-add/roles-add.component';
+import { RolesShowComponent } from './roles-show/roles-show.component';
+import { RolesUserShowComponent } from './roles-user-show/roles-user-show.component';
+import { RolesUserAddComponent } from './roles-user-add/roles-user-add.component';
+import { RolesUserListComponent } from './roles-user-list/roles-user-list.component';
+import { PermissionListComponent } from './permission-list/permission-list.component';
+import { PermissionAddComponent } from './permission-add/permission-add.component';
+import { PermissionShowComponent } from './permission-show/permission-show.component';
+import { PermissionRoleListComponent } from './permission-role-list/permission-role-list.component';
+import { PermissionRoleAddComponent } from './permission-role-add/permission-role-add.component';
+import { PermissionRoleShowComponent } from './permission-role-show/permission-role-show.component';
 @NgModule({
   imports: [
     HttpClientModule,
@@ -86,7 +139,10 @@ import { NoteAddComponent } from './note-add/note-add.component';
     NbStepperModule,
     NbDatepickerModule,
     NbDialogModule.forRoot(),
-    DataTablesModule
+    TagInputModule, 
+    DataTablesModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    NgSelectModule,
   ],
   declarations: [
     PagesComponent,
@@ -127,6 +183,57 @@ import { NoteAddComponent } from './note-add/note-add.component';
     InscritShowComponent,
     NoteListComponent,
     NoteAddComponent,
+    NoteShowComponent,
+    NewsListComponent,
+    NewsAddComponent,
+    NewsShowComponent,
+    MessageListComponent,
+    MessageAddComponent,
+    MessageShowComponent,
+    ChatUserListComponent,
+    ChatUserAddComponent,
+    ChatUserShowComponent,
+    ChatListComponent,
+    ChatAddComponent,
+    ChatShowComponent,
+    NotificationShowComponent,
+    PaysListComponent,
+    PaysAddComponent,
+    PaysShowComponent,
+    VilleListComponent,
+    VilleAddComponent,
+    VilleShowComponent,
+    SchoolListComponent,
+    SchoolAddComponent,
+    SchoolShowComponent,
+    SchoolYearListComponent,
+    SchoolYearAddComponent,
+    SchoolYearShowComponent,
+    TimeSlotListComponent,
+    TimeSlotAddComponent,
+    TimeSlotShowComponent,
+    ClasseShowComponent,
+    UserListComponent,
+    UserAddComponent,
+    UserShowComponent,
+    PersonneListComponent,
+    PersonneAddComponent,
+    PersonneShowComponent,
+    TuteursListComponent,
+    TuteursAddComponent,
+    TuteursShowComponent,
+    RolesListComponent,
+    RolesAddComponent,
+    RolesShowComponent,
+    RolesUserShowComponent,
+    RolesUserAddComponent,
+    RolesUserListComponent,
+    PermissionListComponent,
+    PermissionAddComponent,
+    PermissionShowComponent,
+    PermissionRoleListComponent,
+    PermissionRoleAddComponent,
+    PermissionRoleShowComponent,
   ],
 })
 export class PagesModule {

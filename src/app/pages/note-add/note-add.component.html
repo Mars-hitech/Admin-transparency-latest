@@ -1,3 +1,29 @@
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="float-left">
+  
+      <span class="design-span-title">    
+        <span class="desin-titre">note: </span> 
+      
+        
+      </span>
+     
+    </div>
+    <div class="float-right">
+      <nav aria-label="breadcrumb" class="float-right">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/"><i class="feather icon-crosshair"></i>Accueil</a></li>
+          <li class="breadcrumb-item"><a href="javascript:">note </a></li>
+          <li class="breadcrumb-item"><a href="javascript:">formulaire</a></li>
+        </ol>
+      </nav>
+    </div>
+  
+    
+  </div>
+</div>
+
 <div class="row">
   <div class="col-lg-6">
     <nb-card>
@@ -52,7 +78,7 @@
                  formControlName="note">
           </div>
         </div>
-
+   
         <hr />
         <div class="form-row">
           <div class="form-group col-md-6 text-center">
@@ -84,14 +110,14 @@
             <div class="form-group col-md-12">
               <hr>
               <label class="label" for="registration_number">Eleves</label>
-              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="matricule"
-                    (keyup)="onKey($event)" value="{{resultat}}" #search>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="eleve"
+                    (keyup)="onKey1($event)" value="{{resultat1}}" #search>
 
                    <div class="col-md-12">
-                    <ng-container *ngIf="inptShow">
+                    <ng-container *ngIf="inptShow1">
                       <div class="show_search">
-                        <ng-container *ngFor="let student of student_search"> 
-                            <div><p class="text-secondary mb-1" (click)="click_Show(student.full_name,student.registration_number)"> {{student.full_name}}</p></div>
+                        <ng-container *ngFor="let student of student_search1"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show1(student.full_name,student.id)"> {{student.full_name}}</p></div>
                         </ng-container>
                       </div>
                     </ng-container>
@@ -105,14 +131,14 @@
             <div class="form-group col-md-12">
             
               <label class="label" for="registration_number">Année scolaire</label>
-              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="matricule"
-                    (keyup)="onKey($event)" value="{{resultat}}" #search>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="Année scolaire"
+                    (keyup)="onKey2($event)" value="{{resultat2}}" #search>
 
                    <div class="col-md-12">
-                    <ng-container *ngIf="inptShow">
+                    <ng-container *ngIf="inptShow2">
                       <div class="show_search">
-                        <ng-container *ngFor="let student of student_search"> 
-                            <div><p class="text-secondary mb-1" (click)="click_Show(student.full_name,student.registration_number)"> {{student.full_name}}</p></div>
+                        <ng-container *ngFor="let school of school_year_search2"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show2(school.from_year,school.id)"> {{school.from_year}}-{{school.to_year}}</p></div>
                         </ng-container>
                       </div>
                     </ng-container>
@@ -127,14 +153,14 @@
             <div class="form-group col-md-12">
               
               <label class="label" for="registration_number">Matière</label>
-              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="matricule"
-                    (keyup)="onKey($event)" value="{{resultat}}" #search>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="Matière"
+                    (keyup)="onKey3($event)" value="{{resultat3}}" #search>
 
                    <div class="col-md-12">
-                    <ng-container *ngIf="inptShow">
+                    <ng-container *ngIf="inptShow3">
                       <div class="show_search">
-                        <ng-container *ngFor="let student of student_search"> 
-                            <div><p class="text-secondary mb-1" (click)="click_Show(student.full_name,student.registration_number)"> {{student.full_name}}</p></div>
+                        <ng-container *ngFor="let matiere of matieres_search"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show3(matiere.name,matiere.id)"> {{matiere.name}}</p></div>
                         </ng-container>
                       </div>
                     </ng-container>
@@ -148,14 +174,14 @@
             <div class="form-group col-md-12">
              
               <label class="label" for="registration_number">Sequence</label>
-              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="matricule"
-                    (keyup)="onKey($event)" value="{{resultat}}" #search>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="Sequence"
+                    (keyup)="onKey4($event)" value="{{resultat4}}" #search>
 
                    <div class="col-md-12">
-                    <ng-container *ngIf="inptShow">
+                    <ng-container *ngIf="inptShow4">
                       <div class="show_search">
-                        <ng-container *ngFor="let student of student_search"> 
-                            <div><p class="text-secondary mb-1" (click)="click_Show(student.full_name,student.registration_number)"> {{student.full_name}}</p></div>
+                        <ng-container *ngFor="let sequence of sequence_search"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show4(sequence.name,sequence.id)"> {{sequence.name}}</p></div>
                         </ng-container>
                       </div>
                     </ng-container>
@@ -169,14 +195,14 @@
             <div class="form-group col-md-12">
             
               <label class="label" for="registration_number">Type de devoir</label>
-              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="matricule"
-                    (keyup)="onKey($event)" value="{{resultat}}" #search>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="Type de devoir"
+                    (keyup)="onKey5($event)" value="{{resultat5}}" #search>
 
                    <div class="col-md-12">
-                    <ng-container *ngIf="inptShow">
+                    <ng-container *ngIf="inptShow5">
                       <div class="show_search">
-                        <ng-container *ngFor="let student of student_search"> 
-                            <div><p class="text-secondary mb-1" (click)="click_Show(student.full_name,student.registration_number)"> {{student.full_name}}</p></div>
+                        <ng-container *ngFor="let assessment of assessment_search"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show5(assessment.name,assessment.id)"> {{assessment.name}}</p></div>
                         </ng-container>
                       </div>
                     </ng-container>

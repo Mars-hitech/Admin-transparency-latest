@@ -55,6 +55,12 @@ export class ClassesComponent {
     });
   }
 
+  show(id_: string) {
+    this.router.navigate(['/pages/show-classe/' + id_], {
+      replaceUrl: true,
+    });
+  }
+
   delete() {
     this.dialog.close();
     this.loading = true;

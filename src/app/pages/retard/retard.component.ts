@@ -67,7 +67,7 @@ export class RetardComponent implements OnInit {
         this.loading = true;
         this.api.Retard.one(route_params.params.id)
           .get({
-            _includes: 'student',
+            _includes: 'students',
           })
           .subscribe((retard) => {
             console.log(retard);
@@ -160,9 +160,9 @@ export class RetardComponent implements OnInit {
 
   private createForm() {
     this.retardForm = this._formBuilder.group({
-      registration_number: ['', Validators.required],
-      arrived_at: ['', Validators.required],
-      day: ['', Validators.required],
+      registration_number: [''],
+      arrived_at: [''],
+      day: [''],
     });
   }
 

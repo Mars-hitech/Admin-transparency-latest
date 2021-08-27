@@ -11,6 +11,20 @@ import {HttpClient} from '@angular/common/http';
 })
 export class ClasseComponent implements OnInit {
 
+  resultat:any;
+  resultat_id:any;
+  search:any;
+  get_searc:any;
+  get_searc_id:any;
+  dataTutors: any=[];
+  tab_or: any=[];
+  inpt_search: any;
+  inptShow=false;
+  tutors:any[];
+ school_search: any[];
+  students: any[];
+
+
   classeForm: FormGroup;
   loading: boolean = false;
   errors = [];
@@ -18,11 +32,29 @@ export class ClasseComponent implements OnInit {
   school_year: any;
   currentUser: any;
   old_classe: any;
+  schools: any;
+
+  tab: any[];
 
   constructor(private _formBuilder: FormBuilder, public router: Router, private route: ActivatedRoute,
               public api: ApiService, public httpClient: HttpClient) {
     this.loading = true;
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.api.School
+    .getList(
+      {
+        should_paginate: false,
+      
+      }
+    )
+    .subscribe((data) => {
+      this.schools = data;
+      console.log(data);
+    }, (error) => {
+      console.log(error);
+    });
+  
+
     this.createForm();
     this.loading = false;
   }
@@ -39,6 +71,7 @@ export class ClasseComponent implements OnInit {
             this.old_classe = classe;
             this.classeForm.controls['code'].setValue(this.old_classe.code);
             this.classeForm.controls['name'].setValue(this.old_classe.name);
+            this.classeForm.controls['school_id'].setValue(this.old_classe.school_id);
             this.loading = false;
           }, (err) => {
             console.log(err);
@@ -104,7 +137,71 @@ export class ClasseComponent implements OnInit {
     this.classeForm = this._formBuilder.group({
       code: ['', Validators.required],
       name: ['', Validators.required],
+      school_id: ['', Validators.required],
     });
   }
 
+
+      //event onkey
+      searchForm(){
+
+        // console.log(this.students);
+         this.school_search=[];
+        this.tab=[]; 
+     
+         for (let nb = 0; nb <this.schools.length; nb++) {
+          if(this.inpt_search!=""){
+         
+           if(this.schools[nb].name.toUpperCase().includes(this.inpt_search.toUpperCase())===true){
+             
+             this.tab.push(this.schools[nb]);
+             this.school_search=this.tab;
+           
+           }
+          }
+           
+       }
+     
+       
+     
+     
+       
+       }
+       
+       values = '';
+     
+     onKey(event: any) { // without type info
+       this.values = event.target.value ;
+      
+         
+       if(this.values!=""){
+         this.resultat=event.target.value;
+         this.inptShow=true;
+         this.inpt_search=this.values;
+         
+         console.log(this.inpt_search);
+         this.searchForm();
+         
+       
+       }else{
+         
+        this.dataTutors=this.tab_or;
+         this.inptShow=false;
+         this.resultat="";
+         this.resultat_id="";
+       }
+      
+     }
+     
+     click_Show(searc,searc_id){
+       this.get_searc=searc;
+       this.get_searc_id=searc_id;
+     this.resultat=this.get_searc;
+     this.resultat_id=this.get_searc_id;
+     this.inptShow=false;
+     if(this.resultat_id){
+       this.classeForm.controls['school_id'].setValue(this.resultat_id);
+     }
+     
+     }
 }

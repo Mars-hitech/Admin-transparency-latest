@@ -1,0 +1,124 @@
+<div class="row">
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Formulaire d'enregistrement </nb-card-header>
+
+      <nb-card-body [formGroup]="userForm" [nbSpinner]="loading"
+                    nbSpinnerStatus="danger"
+                    nbSpinnerSize="large"
+                    nbSpinnerMessage="Enregistrement en cours...">
+        <nb-alert *ngFor="let error of errors" status="warning" closable (close)="onClose(error)">
+          <strong>Warning!</strong> {{error}}.
+        </nb-alert>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">email</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="email"
+                 formControlName="email">
+          </div>
+        </div>
+
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">telephone</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="phone number"
+                 formControlName="phone_number">
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">is active</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="is active"
+                 formControlName="is_active">
+          </div>
+        </div>
+
+        
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">Mot de passe</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="password"
+                 formControlName="password">
+          </div>
+        </div>
+
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">Pin code</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="pin code"
+                 formControlName="pin_code">
+          </div>
+        </div>
+
+
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="subject">Reglage</label>
+            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="reglage"
+                 formControlName="reglage">
+          </div>
+        </div>
+
+       
+        
+        <hr/>
+
+       
+       
+      
+
+        <hr/>
+        <div class="form-row">
+          <div class="form-group col-md-6 text-center">
+            <button type="button" class="AppButton btn-yellow w-50"
+                    (click)="cancel()">
+              Annuler</button>
+          </div>
+          <div class="form-group col-md-6 text-center">
+            <button
+              type="button"
+              class="AppButton btn-blue w-50"
+              (click)="save()"
+            >
+              Enregistrer
+            </button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="row">
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Ressources connexes</nb-card-header>
+    
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+              <hr>
+           
+                   <hr>
+            </div>
+          
+          </div>
+        </nb-card>
+      </div>
+
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Relié par des ressources</nb-card-header>
+    
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+             <hr>
+             <hr>
+            </div>
+          
+          </div>
+        </nb-card>
+      </div>
+    </div>
+    
+  </div>
+</div>

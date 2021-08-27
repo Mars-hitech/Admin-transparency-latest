@@ -39,12 +39,10 @@ export class NoteListComponent {
         this.api.Note.getList(
           {
             should_paginate: false,
-            school_year_id: this.school_year.id,
-            'classe_id-in': ids.toString(),
             _includes: 'school_year,student,matiere,assessment_type,sequence',
           }).subscribe( inscrits => {
             this.data = [];
-            console.log(inscrits)
+            console.log(inscrits.length)
             let i;
             for (i = 0; i < inscrits.length; i++) {
               if (inscrits[i].school_year != null)
@@ -86,12 +84,12 @@ export class NoteListComponent {
   }
 
   edit(id_: string) {
-    this.router.navigate(['/pages/student-add/' + id_], {
+    this.router.navigate(['/pages/note-add/' + id_], {
       replaceUrl: true,
     });
   }
   show(id_: string) {
-    this.router.navigate(['/pages/student-show/' + id_], {
+    this.router.navigate(['/pages/note-show/' + id_], {
       replaceUrl: true,
     });
   }

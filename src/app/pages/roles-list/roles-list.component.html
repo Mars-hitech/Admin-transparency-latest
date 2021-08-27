@@ -1,0 +1,94 @@
+<nb-card>
+  <nb-card-header>
+
+  </nb-card-header>
+
+  <nb-card-body [nbSpinner]="loading"
+                nbSpinnerStatus="danger"
+                nbSpinnerSize="large"
+                nbSpinnerMessage="Traitement en cours...">
+    <div class="form-row">
+      <div class="form-group text-left">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="createRoles()">
+          <i class="ion-plus"></i> AJouter
+        </button>
+      </div>
+      <div class="form-group col-md-6 text-center">
+      </div>
+    </div>
+
+    <p>Liste Roles</p>
+    	
+    <table class="table table-hover">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nom </th>
+        <th scope="col">afficher un nom</th>
+        <th scope="col">description </th>
+        
+        <th scope="col">Modifié le</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let role of roles; let i = index">
+        <th scope="row">{{role.id}}</th>
+        <td>{{ role.name }}</td>
+       
+        <td>{{ role.display_name }}</td>
+   
+        <td>{{ role.description }}</td>
+      
+        <td>{{ role.updated_at }}</td>
+        <td>
+        
+
+
+          <div class="buttons-row design-btn-action">
+            <button  type="button"
+            class="btn btn-info" hero (click)="show(role.id)">
+              <i class="ion-search"></i> 
+            </button>
+            <button  type="button"
+            class="btn btn-warning" hero (click)="edit(role.id)">
+              <i class="ion-edit text-white"></i> 
+            </button>
+            <button  type="button"
+            class="btn btn-danger" hero (click)="open(dialog, role)">
+              <i class="ion-trash-a"></i> 
+            </button>
+          
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination [collectionSize]="data.length" [(page)]="page" [pageSize]="pageSize">
+      </ngb-pagination>
+
+      <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+        <option [ngValue]="20">20 per page</option>
+        <option [ngValue]="40">40 per page</option>
+        <option [ngValue]="60">60 per page</option>
+      </select>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>Dialogue de Confirmation</nb-card-header>
+    <nb-card-body>Voulez vous vraiment effectuer cette action?</nb-card-body>
+    <nb-card-footer>
+        <button type="button" class="btn btn-outline-primary btn-sm w-25"(click)="delete()">Oui</button>
+        <button type="button" class="btn btn-outline-danger btn-sm ml-1 w-25"
+                (click)="ref.close()">Non</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

@@ -1,0 +1,113 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="float-left">
+  
+      <span class="design-span-title">    
+        <span class="desin-titre">Role</span> 
+        <button type="button" class="btn btn-icon btn-primary"  (click)="createRoles()"><i class="ion-plus"></i></button>
+     
+        <button type="button" class="btn btn-icon btn-success" ><i class="ion-edit"></i></button>
+        
+      </span>
+     
+    </div>
+    <div class="float-right">
+      <nav aria-label="breadcrumb" class="float-right">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/"><i class="feather icon-crosshair"></i>Accueil</a></li>
+          <li class="breadcrumb-item"><a href="javascript:">roles</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Details</li>
+        </ol>
+      </nav>
+    </div>
+  
+    
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Informations principales</nb-card-header>
+     
+      <nb-card-body >
+        <table class="table table-dark">
+              
+          <tbody class="tr_design_tab">
+          <tr>
+            <td >#</td>
+            <td >{{old_role.id}}</td>
+            
+          
+          </tr>
+          <tr>
+            <td>nom</td>
+            <td>{{old_role.name}}</td>
+        
+          </tr>
+         
+          <tr>
+            <td>afficher un nom</td>
+            <td >{{old_role.display_name}}</td>
+           
+          </tr>
+         
+          <tr>
+            <td>description</td>
+            <td>{{old_role.description }}</td>
+           
+          </tr>
+          
+     
+         
+
+          <tr>
+            <td>créé le	</td>
+            <td>{{old_role.created_at}}</td>
+           
+          </tr>
+
+          <tr>
+            <td>modifié le</td>
+            <td>{{old_role.updated_at}}</td>
+           
+          </tr>
+
+         
+         
+           
+          
+          </tbody>
+        </table>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <div class="row">
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Ressources connexes</nb-card-header>
+
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+             
+            </div>
+          </div>
+
+        </nb-card>
+      </div>
+
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Relié par des ressources</nb-card-header>
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+            
+            </div>
+          </div>
+        </nb-card>
+      </div>
+    </div>
+    
+  </div>
+</div>

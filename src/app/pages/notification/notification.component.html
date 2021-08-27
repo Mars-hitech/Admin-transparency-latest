@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-10">
+  <div class="col-lg-6">
     <nb-card>
       <nb-card-header>Formulaire d'enregistrement d'une notification</nb-card-header>
 
@@ -11,21 +11,23 @@
           <strong>Warning!</strong> {{error}}.
         </nb-alert>
         <div class="full-name-inputs">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-12">
             <label class="label" for="type">Type</label>
             <select id="type" class="form-control"  formControlName="type">
               <option value="event">Event</option>
               <option value="correspondence">Correspondence</option>
             </select>
           </div>
-          <div class="form-group col-md-6">
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
             <label class="label" for="subject">Sujet</label>
             <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="subject"
                  formControlName="subject">
           </div>
         </div>
         <div class="full-name-inputs">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-12">
             <label class="label" for="event_date">Date</label>
             <input [nbDatepicker]="datepicker" id="event_date" class="form-control" nbInput fullWidth
                    placeholder="" formControlName="event_date" fieldSize="medium">
@@ -42,7 +44,7 @@
         <hr/>
 
         <div class="full-name-inputs">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-12">
             <label class="label" for="concern">Concerne</label>
             <select id="concern" class="form-control" (change)="onTypeChange($event.target.value)">
               <option value="school">Toute l'Ecole</option>
@@ -50,13 +52,25 @@
               <option value="student">Un eleve</option>
             </select>
           </div>
-          <div class="form-group col-md-6" *ngIf="type === 'classe'">
+        </div>  
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="concern">Status</label>
+            <select id="concern" class="form-control" formControlName="status">
+              <option value="new">New</option>
+              <option value="disable">Disable</option>
+              <option value="enable">Enable</option>
+            </select>
+          </div>
+        </div> 
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12" *ngIf="type === 'classe'">
             <label class="label" for="classe_id">Classe</label>
             <select id="classe_id" class="form-control" formControlName="classe_id">
               <option value="{{c.id}}" *ngFor="let c of classes">{{c.name}}</option>
             </select>
           </div>
-          <div class="form-group col-md-6" *ngIf="type === 'student'">
+          <div class="form-group col-md-12" *ngIf="type === 'student'">
             <label for="matricule" class="label">Matricule de l'eleve</label>
             <input type="text" id="matricule" class="form-control"  formControlName="matricule"
                    nbInput fullWidth placeholder="matricule">
@@ -82,5 +96,39 @@
         </div>
       </nb-card-body>
     </nb-card>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="row">
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Ressources connexes</nb-card-header>
+    
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+              <hr>
+           
+                   <hr>
+            </div>
+          
+          </div>
+        </nb-card>
+      </div>
+
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Relié par des ressources</nb-card-header>
+    
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+             <hr>
+             <hr>
+            </div>
+          
+          </div>
+        </nb-card>
+      </div>
+    </div>
+    
   </div>
 </div>

@@ -40,8 +40,7 @@ export class StudentsComponent {
         this.api.Inscrit.getList(
           {
             should_paginate: false,
-            school_year_id: this.school_year.id,
-            'classe_id-in': ids.toString(),
+          
             _includes: 'classe,student,school_year',
           }).subscribe( inscrits => {
            
@@ -93,26 +92,26 @@ export class StudentsComponent {
     });
   }
 
-   delete() {
-    this.loading = true;
-    console.log(this.selected_item.id);
-    this.api.Student.one(this.selected_item.id + '')
-      .remove()
-      .subscribe((data) => {
-        console.log(this.selected_item);
-        this.data = this.data.filter(item => item.id !== this.selected_item.id);
-        this.dialog.close();
-        window.location.reload();
-        this.loading = false;
-      
-      }, (error) => {
-        this.loading = false;
-        console.log(error);
-      });
-  }
+
   show(id_: string) {
     this.router.navigate(['/pages/inscrit-show/' + id_], {
       replaceUrl: true,
     });
+  }
+
+  delete() {
+    this.dialog.close();
+    this.loading = true;
+   
+    this.api.Inscrit.one(this.selected_item.id + '')
+      .remove()
+      .subscribe((data) => {
+        this.data = this.data.filter(item => item.id !== this.selected_item.id);
+        this.loading = false;
+        console.log(data);
+      } , (error) => {
+        console.log(error);
+        this.loading = false;
+      });
   }
 }

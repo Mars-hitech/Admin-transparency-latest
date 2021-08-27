@@ -1,0 +1,138 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="float-left">
+  
+      <span class="design-span-title">    
+        <span class="desin-titre">Chat</span> 
+        <button type="button" class="btn btn-icon btn-primary"  (click)="createChat()"><i class="ion-plus"></i></button>
+     
+        <button type="button" class="btn btn-icon btn-success" ><i class="ion-edit"></i></button>
+        
+      </span>
+     
+    </div>
+    <div class="float-right">
+      <nav aria-label="breadcrumb" class="float-right">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/"><i class="feather icon-crosshair"></i>Accueil</a></li>
+          <li class="breadcrumb-item"><a href="javascript:">Chat</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Details</li>
+        </ol>
+      </nav>
+    </div>
+  
+    
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Informations principales</nb-card-header>
+   
+      <nb-card-body >
+        <table class="table table-dark">
+              
+          <tbody class="tr_design_tab">
+          <tr>
+            <td >#</td>
+            <td *ngIf="old_chat.id">{{old_chat.id}}</td>
+            <td *ngIf="!old_chat.id">-</td>
+          
+          </tr>
+          <tr>
+            <td>Titre</td>
+            <td>{{old_chat.title}}</td>
+        
+          </tr>
+         
+          <tr>
+            <td>Concerné</td>
+            <td>{{ old_chat.concern_type}} 
+             
+              </td>
+           
+          </tr>
+          <tr>
+            <td>Id concerné</td>
+            <td>{{old_chat.concern_id}}</td>
+           
+          </tr>
+         
+        
+          <tr>
+            <td>créé le</td>
+            <td>{{old_chat.created_at }}</td>
+           
+          </tr>
+          
+          <tr>
+            <td>modifié le</td>
+            <td>{{old_chat.updated_at}}</td>
+           
+          </tr>
+         
+           
+          
+          </tbody>
+        </table>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <div class="row">
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Ressources connexes</nb-card-header>
+    
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+             <table class="table table-dark">
+              <tr>
+                <td >Personnes du chat({{old_chat.chat_users.length}})</td>
+                <ng-container *ngFor="let chat of old_chat.chat_users">
+                  <tr class="design-perso-liste-message">
+                  <td  >{{chat.user.email}}</td>
+                </tr>
+                </ng-container>
+                
+             
+                
+              
+              </tr>
+             </table>
+            </div>
+          
+          </div>
+        </nb-card>
+      </div>
+
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Relié par des ressources</nb-card-header>
+    
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+             <table class="table table-dark">
+              <tr>
+                <td >Messages({{old_chat.messages.length}})</td>
+                <ng-container *ngFor="let chat of old_chat.messages">
+                  <tr class="design-perso-liste-message">
+                  <td  >{{chat.body}}</td>
+                </tr>
+                </ng-container>
+                
+             
+                
+              
+              </tr>
+             </table>
+            </div>
+          
+          </div>
+        </nb-card>
+      </div>
+    </div>
+    
+  </div>
+</div>

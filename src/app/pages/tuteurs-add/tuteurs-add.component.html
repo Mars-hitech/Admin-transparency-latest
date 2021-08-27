@@ -1,0 +1,121 @@
+<div class="row">
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Informations principales</nb-card-header>
+
+      <nb-card-body [formGroup]="tutorForm" [nbSpinner]="loading"
+                    nbSpinnerStatus="danger"
+                    nbSpinnerSize="large"
+                    nbSpinnerMessage="Enregistrement en cours...">
+        <nb-alert *ngFor="let error of errors" status="warning" closable (close)="onClose(error)">
+          <strong>Warning!</strong> {{error}}.
+        </nb-alert>
+        
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="registration_number">nom</label>
+            <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="first name"
+                 formControlName="first_name">
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="first_name">prenom</label>
+            <input type="text" id="first_name" class="form-control" nbInput fullWidth placeholder="last name"
+                 formControlName="last_name">
+          </div>
+        </div>
+      
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="first_name">adresse</label>
+            <input type="text" id="first_name" class="form-control" nbInput fullWidth placeholder="last name"
+                 formControlName="address">
+          </div>
+        </div>
+
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="first_name">user id</label>
+            <input type="text" id="first_name" class="form-control" nbInput fullWidth placeholder="last name"
+                 formControlName="user_id">
+          </div>
+        </div>
+
+        <div class="full-name-inputs">
+          
+          <div class="form-group col-md-12">
+            <label class="label" for="picture">Photo de profil</label>
+            <input-file
+              id="picture"
+              fileAccept="image/*"
+              fileLimit="1"
+              
+              class="left-rounded right-rounded"
+            ></input-file>
+          </div>
+        </div>
+
+        <hr />
+        <div class="form-row">
+          <div class="form-group col-md-6 text-center">
+            <button type="button" class="AppButton btn-yellow w-50"
+                    (click)="cancel()">
+              Annuler</button>
+          </div>
+          <div class="form-group col-md-6 text-center">
+            <button
+              type="button"
+              class="AppButton btn-blue w-50"
+              (click)="save()"
+            >
+              Enregistrer
+            </button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <div class="row">
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Ressources connexes</nb-card-header>
+    
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+              <label class="label" for="registration_number">Tuteur</label>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="matricule"
+                    (keyup)="onKey($event)" value="{{resultat}}" #search>
+
+                   <div class="col-md-12">
+                    <ng-container *ngIf="inptShow">
+                      <div class="show_search">
+                        <ng-container *ngFor="let user of user_search"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show(user.full_name,user.id)"> {{user.full_name}}</p></div>
+                        </ng-container>
+                      </div>
+                    </ng-container>
+                   </div>
+            </div>
+          
+          </div>
+        </nb-card>
+      </div>
+
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Relié par des ressources</nb-card-header>
+    
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+             
+            </div>
+          
+          </div>
+        </nb-card>
+      </div>
+    </div>
+    
+  </div>
+</div>

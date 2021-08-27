@@ -30,7 +30,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {HttpTokenInterceptorService} from './auth/http-token-interceptor.service';
 import { NgbTimepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import {DataTablesModule} from 'angular-datatables';
-
+import { TagInputModule } from 'ngx-chips';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgSelectModule } from '@ng-select/ng-select';
 const config: InputFileConfig = {
   fileAccept: '*',
   fileLimit: 4,
@@ -115,7 +117,7 @@ export function RestangularConfigFactory (RestangularProvider, toastProvider: To
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-
+    NgSelectModule,
     ThemeModule.forRoot(),
     InputFileModule.forRoot(config),
 
@@ -125,6 +127,8 @@ export function RestangularConfigFactory (RestangularProvider, toastProvider: To
     NbDialogModule.forRoot(),
     NbWindowModule.forRoot(),
     NbToastrModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot(),
+    TagInputModule, 
     NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),

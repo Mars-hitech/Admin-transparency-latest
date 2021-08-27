@@ -13,7 +13,7 @@ export class TeachersComponent {
   loading: boolean = false;
   selected_item: any;
   page = 1;
-  pageSize = 20;
+  pageSize = 10;
   collectionSize = 0;
   dialog: NbDialogRef<any>;
 
@@ -22,6 +22,7 @@ export class TeachersComponent {
       {
         should_paginate: false,
         _sortDir: 'desc',
+        _includes:'user,school'
       }).subscribe( teachers => {
         this.data = teachers;
     });

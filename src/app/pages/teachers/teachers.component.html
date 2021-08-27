@@ -26,24 +26,30 @@
       <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Picture</th>
+      
         <th scope="col">Matricule</th>
         <th scope="col">Nom</th>
         <th scope="col">Prenom</th>
         <th scope="col">Titre</th>
+        <th scope="col">Numero de telephone</th>
+        <th scope="col">Ecole</th>
+          <th scope="col">Picture</th>
         <th scope="col">Action</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let teacher of teachers; let i = index">
         <th scope="row">{{(page - 1) * pageSize + i}}</th>
-        <td (click)="openInNewTab(teacher.picture)">
-          <img [src]="teacher.picture" class="mr-2" style="width: 20px">
-        </td>
+       
         <td>{{ teacher.registration_number}}</td>
         <td>{{ teacher.first_name }}</td>
         <td>{{ teacher.last_name }}</td>
         <td>{{ teacher.title }}</td>
+        <td>{{ teacher.user.phone_number }}</td>
+        <td>{{ teacher.school.name }}</td>
+        <td (click)="openInNewTab(teacher.picture)">
+          <img [src]="teacher.picture" class="mr-2" style="width: 20px">
+        </td>
         <td>
           <button type="button" class="btn btn-outline-primary btn-sm"  (click)="edit(teacher.id)">
             <i class="fa fa-check-circle"></i> Modifier

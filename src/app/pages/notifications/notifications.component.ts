@@ -12,7 +12,7 @@ export class NotificationsComponent {
   data = [];
   loading: boolean = false;
   page = 1;
-  pageSize = 20;
+  pageSize = 10;
   collectionSize = 0;
   notification: any;
   dialog: NbDialogRef<any>;
@@ -45,13 +45,20 @@ export class NotificationsComponent {
     });
   }
 
-  open(dialog: TemplateRef<any>, status: string, elt: any) {
-    this.notification = elt;
+
+
+  open(dialog: TemplateRef<any>, evenement: any) {
+    this.notification = evenement;
     this.dialog = this.dialogService.open(dialog, { context: status });
   }
-
   edit(id_: string) {
     this.router.navigate(['/pages/add-notification/' + id_], {
+      replaceUrl: true,
+    });
+  }
+
+  show(id_: string) {
+    this.router.navigate(['/pages/notification-show/' + id_], {
       replaceUrl: true,
     });
   }
@@ -71,4 +78,6 @@ export class NotificationsComponent {
         this.loading = false;
       });
   }
+
+  
 }

@@ -422,4 +422,10 @@ createAbsent() {
     replaceUrl: true,
   });
 }
+
+edit(id_: string) {
+  this.router.navigate(['/pages/add-absent/' + id_], {
+    replaceUrl: true,
+  });
+}
 }

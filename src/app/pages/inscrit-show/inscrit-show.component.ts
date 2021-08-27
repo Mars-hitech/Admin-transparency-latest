@@ -68,17 +68,17 @@ export class InscritShowComponent implements OnInit {
       if (route_params.params.id) {
         console.log(route_params.params.id);
         this.loading = true;
-        this.api.Student.one(route_params.params.id)
+        this.api.Inscrit.one(route_params.params.id)
           .get(
             {
               
-              _includes: 'classes',
+              _includes: 'classe,student,school_year',
             }
           )
-          .subscribe((student) => {
-            console.log(student.id);
+          .subscribe((inscrit) => {
+            console.log(inscrit.id);
            
-            this.old_student = student;
+            this.old_student = inscrit;
          
             this.loading = false;
           }, (err) => {
@@ -416,5 +416,17 @@ if(this.resultat_id){
   this.studentForm.addControl('tutor_id',new FormControl(this.resultat_id, Validators.required));
 }
 
+}
+
+createAbsent() {
+  this.router.navigate(['/pages/add-student'], {
+    replaceUrl: true,
+  });
+}
+
+edit(id_: string) {
+  this.router.navigate(['/pages/add-student/' + id_], {
+    replaceUrl: true,
+  });
 }
 }

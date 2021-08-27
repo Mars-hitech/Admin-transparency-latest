@@ -1,0 +1,18 @@
+
+      
+
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <ng-multiselect-dropdown
+            [placeholder]="'custom placeholder'"
+            [settings]="dropdownSettings"
+            [data]="dropdownList"
+            [(ngModel)]="selectedItems"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+  
+>
+</ng-multiselect-dropdown>
+          </div>
+        </div>
+        
