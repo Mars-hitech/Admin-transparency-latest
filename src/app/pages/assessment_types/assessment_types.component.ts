@@ -15,6 +15,7 @@ export class AssessmentTypesComponent {
   pageSize = 20;
   collectionSize = 0;
   dialog: NbDialogRef<any>;
+  selected_item: any; 
 
   constructor(private router: Router, private dialogService: NbDialogService, public api: ApiService) {
     this.api.AssessmentType.getList(
@@ -43,7 +44,8 @@ export class AssessmentTypesComponent {
     });
   }
 
-  open(dialog: TemplateRef<any>, status: string) {
+  open(dialog: TemplateRef<any>, assessmentType: any) {
+    this.selected_item = assessmentType;
     this.dialog = this.dialogService.open(dialog, { context: status });
   }
 
@@ -51,5 +53,19 @@ export class AssessmentTypesComponent {
     this.router.navigate(['/pages/add-assessment_type/' + id_], {
       replaceUrl: true,
     });
+  }
+
+  delete() {
+    this.loading = true;
+    this.api.AssessmentType.one(this.selected_item.id + '')
+      .remove()
+      .subscribe((data) => {
+        this.data = this.data.filter(item => item.id !== this.selected_item.id);
+        this.dialog.close();
+        this.loading = false;
+      }, (error) => {
+        this.loading = false;
+        console.log(error);
+      });
   }
 }

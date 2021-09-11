@@ -29,6 +29,7 @@
         <th scope="col">Sujet</th>
         <th scope="col">Description</th>
         <th scope="col">Type</th>
+        <th scope="col">Date de l'événement</th>
         <th scope="col">Concerne</th>
         <th scope="col">status</th>
         <th scope="col">Action</th>
@@ -40,7 +41,8 @@
         <td>{{ notification.subject }}</td>
         <td>{{ notification.description }}</td>
         <td>{{ notification.concern_type }}</td>
-        <td>{{ notification.concern.label }}</td>
+        <td>{{ notification.event_date }}</td>
+        <td>{{ notification.concern_id }}</td>
         <td>{{ notification.status }}</td>
         <td>
         

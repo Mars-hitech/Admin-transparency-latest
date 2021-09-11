@@ -40,7 +40,7 @@
           <button type="button" class="btn btn-outline-primary btn-sm" (click)="edit(assessment_type.id)">
             <i class="fa fa-check-circle"></i> Modifier
           </button>
-          <button type="button" class="btn btn-outline-danger btn-sm ml-1" (click)="open(dialog, 'DELETE')">
+          <button type="button" class="btn btn-outline-danger btn-sm ml-1" hero (click)="open(dialog, assessment_type)" >
             <i class="ion-close-circled"></i> Supprimer
           </button>
         </td>
@@ -66,7 +66,7 @@
     <nb-card-header>Dialogue de Confirmation</nb-card-header>
     <nb-card-body>Voulez vous vraiment effectuer cette action?</nb-card-body>
     <nb-card-footer>
-        <button type="button" class="btn btn-outline-primary btn-sm w-25">Oui</button>
+        <button type="button" class="btn btn-outline-primary btn-sm w-25"  (click)="delete()">Oui</button>
         <button type="button" class="btn btn-outline-danger btn-sm ml-1 w-25"
                 (click)="ref.close()">Non</button>
     </nb-card-footer>

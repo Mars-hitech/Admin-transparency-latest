@@ -21,9 +21,11 @@ export class NewsListComponent  {
     this.api.News.getList(
       {
         should_paginate: false,
+        _sort:'updated_at'
         
       }).subscribe( news => {
         this.data = news;
+        console.log(this.data);
     });
   }
 

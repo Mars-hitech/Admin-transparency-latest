@@ -44,6 +44,13 @@
         </div>
         <div class="full-name-inputs">
           <div class="form-group col-md-12">
+            <label class="label" for="registration_number">Année scolaire</label>
+            <input type="number" id="registration_number" class="form-control" nbInput fullWidth placeholder="année scolaire"
+                 formControlName="school_year_id">
+          </div>
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
             <label class="label" for="day">Jour</label>
             <input [nbDatepicker]="datepicker" id="day" class="form-control" nbInput fullWidth
                    placeholder="" formControlName="day" fieldSize="medium">
@@ -98,6 +105,28 @@
                       <div class="show_search">
                         <ng-container *ngFor="let student of student_search"> 
                             <div><p class="text-secondary mb-1" (click)="click_Show(student.full_name,student.registration_number)"> {{student.full_name}}</p></div>
+                        </ng-container>
+                      </div>
+                    </ng-container>
+                   </div>
+                
+            </div>
+          
+          </div>
+
+
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+              
+              <label class="label" for="registration_number">Année scolaire</label>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="Année scolaire"
+                    (keyup)="onKey2($event)" value="{{resultat2}}" #search>
+
+                   <div class="col-md-12">
+                    <ng-container *ngIf="inptShow2">
+                      <div class="show_search">
+                        <ng-container *ngFor="let school_year of school_years"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show2(school_year.from_year,school_year.id)"> {{school_year.from_year}} - {{school_year.to_year}}</p></div>
                         </ng-container>
                       </div>
                     </ng-container>

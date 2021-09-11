@@ -42,8 +42,6 @@
             <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="matricule"
                  formControlName="registration_number">
           </div>
-        </div>
-        <div class="full-name-inputs">
           <div class="form-group col-md-12">
             <label class="label" for="first_name">Nom</label>
             <input type="text" id="first_name" class="form-control" nbInput fullWidth placeholder="First name"
@@ -58,19 +56,11 @@
             <input type="text" id="last_name" class="form-control" nbInput fullWidth placeholder="Last Name"
                  formControlName="last_name">
           </div>
-        </div>
-        <div class="full-name-inputs">
+
           <div class="form-group col-md-12">
             <label class="label" for="tutor_phone_number">Telephone du tuteur</label>
             <input type="text" id="tutor_phone_number" class="form-control" nbInput fullWidth shape="semi-round" placeholder="Tutor's phone"
                    formControlName="tutor_phone_number">
-          </div>
-        </div>
-        <div class="full-name-inputs">
-          <div class="form-group col-md-12">
-            <label class="label" for="tutor_phone_number">Tuteur</label>
-            <input type="number" id="tutor_phone_number" class="form-control" nbInput fullWidth shape="semi-round" placeholder="Tutor's phone"
-                   formControlName="tutor_id">
           </div>
         </div>
         <div class="full-name-inputs">
@@ -80,8 +70,6 @@
                    placeholder="" formControlName="birth_date" fieldSize="medium">
             <nb-datepicker #datepicker></nb-datepicker>
           </div>
-        </div>
-        <div class="full-name-inputs">
           <div class="form-group col-md-12">
             <label class="label" for="birth_place">Lieu de naissance</label>
             <input type="text" id="birth_place" class="form-control" nbInput fullWidth placeholder="birth place"
@@ -97,8 +85,6 @@
             </select>
             
           </div>
-        </div>
-        <div class="full-name-inputs">
           <div class="form-group col-md-12">
             <label class="label" for="picture">Photo de profil</label>
             <input-file
@@ -122,7 +108,7 @@
             <button
               type="button"
               class="AppButton btn-blue w-50"
-              (click)="save()"
+              (click)="saveUser()"
             >
               Enregistrer
             </button>

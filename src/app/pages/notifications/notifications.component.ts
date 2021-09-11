@@ -23,8 +23,9 @@ export class NotificationsComponent {
         should_paginate: false,
         _includes: 'concern',
         _sortDir: 'desc',
-      }).subscribe( notifications => {
-        this.data = notifications;
+      }).subscribe( result => {
+        this.data = result;
+        console.log(this.data);
     });
   }
 

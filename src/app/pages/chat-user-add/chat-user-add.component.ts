@@ -27,9 +27,26 @@ export class ChatUserAddComponent implements OnInit {
   old_message: any;
   user_search: any[];
   tab: any[];
-  users: any;
+  users: any[];
   inpt_search: string;
   resultat: any;
+
+
+  resultat2:any;
+  resultat_id2:any;
+  search2:any;
+  get_searc2:any;
+  get_searc_id2:any;
+  dataTutors2: any=[];
+  tab_or2: any=[];
+  inpt_search2: any;
+  inptShow2=false;
+  tutors2:any[];
+  student_search2: any[];
+  school_years: any[];
+  tab2: any[];
+  chat_search: any[];
+
 
   dataTutors: any;
   tab_or: any;
@@ -37,19 +54,29 @@ export class ChatUserAddComponent implements OnInit {
   get_searc: any;
   get_searc_id: any;
   old_chat_user: any;
+  chats: any;
 
   constructor(private _formBuilder: FormBuilder, public router: Router, private route: ActivatedRoute,
               public api: ApiService, public httpClient: HttpClient, public datepipe: DatePipe) {
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.api.User.getList(
-      {
-        should_paginate: false,
-      }).subscribe((data) => {
+    this.api.User.getList({
+      should_paginate: false,
+    }).subscribe((data) => {
       this.users = data;
+      console.log(this.users);
     
     }, (error) => {
       console.log(error);
+    });
+    this.api.Chat
+    .getList({
+      should_paginate: false,
+      _sortDir: 'desc',
+    })
+    .subscribe( chat => {
+      console.log(chat);
+        this.chats = chat;
     });
     this.createForm();
     this.loading = false;
@@ -115,6 +142,7 @@ export class ChatUserAddComponent implements OnInit {
             }, e_array);
           });
       } else {
+        console.log(params)
         this.api.ChatUser
           .post(params)
           .subscribe((result) => {
@@ -157,13 +185,16 @@ export class ChatUserAddComponent implements OnInit {
 
      for (let nb = 0; nb <this.users.length; nb++) {
       if(this.inpt_search!=""){
-     
-       if(this.users[nb].full_name.toUpperCase().includes(this.inpt_search.toUpperCase())===true){
+        console.log(this.inpt_search);
+        if(this.users[nb].full_name!=null){
+          if(this.users[nb].full_name.toUpperCase().includes(this.inpt_search.toUpperCase())===true){
          
-         this.tab.push(this.users[nb]);
-         this.user_search=this.tab;
-       
-       }
+            this.tab.push(this.users[nb]);
+            this.user_search=this.tab;
+          
+          }
+        }
+     
       }
        
    }
@@ -211,6 +242,65 @@ export class ChatUserAddComponent implements OnInit {
  
  }
 
+
+
+    //event onkey
+    searchForm2(){
+   
+      // console.log(this.students);
+       this.chat_search=[];
+      this.tab2=[]; 
+       
+       for (let nb = 0; nb <this.chats.length; nb++) {
+        if(this.inpt_search2!=""){
+          
+         if(this.chats[nb].title.toUpperCase().includes(this.inpt_search2.toUpperCase())===true){
+          console.log(this.chats[nb].title);
+           this.tab2.push(this.chats[nb]);
+           this.chat_search=this.tab2;
+         
+         }
+        }
+         
+     }
+     }
+     
+     values2 = '';
+    onKey2(event: any) { // without type info
+    this.values2 = event.target.value ;
+    
+    
+    if(this.values2!=""){
+    this.resultat2=event.target.value;
+    this.inptShow2=true;
+    this.inpt_search2=this.values2;
+    
+    console.log(this.inpt_search2);
+    this.searchForm2();
+    
+    
+    }else{
+    
+    this.dataTutors2=this.tab_or2;
+    this.inptShow2=false;
+    this.resultat2="";
+    this.resultat_id2="";
+    }
+    
+    }
+    
+    click_Show2(searc,searc_id){
+    this.get_searc2=searc;
+    this.get_searc_id2=searc_id;
+    this.resultat2=this.get_searc2;
+    this.resultat_id2=this.get_searc_id2;
+    this.inptShow2=false;
+    if(this.resultat_id2){
+      this.chatUserForm.controls['chat_id'].setValue(this.resultat_id2);
+    
+    }
+    
+    }
         
     }
   

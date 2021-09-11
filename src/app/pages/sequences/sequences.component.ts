@@ -22,7 +22,7 @@ export class SequencesComponent {
       {
         should_paginate: false,
         _sortDir: 'desc',
-        _includes: 'trimestre',
+   
       }).subscribe( sequences => {
         this.data = sequences;
     });

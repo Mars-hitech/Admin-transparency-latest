@@ -55,6 +55,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         icon: 'file-add-outline',
         link: '/pages/note-list',
       },
+      /*
       {
         title: 'Note Sequentielles',
         icon: 'file-add-outline',
@@ -69,11 +70,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Note Annuelles',
         link: '/pages/moyenne-annuelle',
         icon: 'file-add-outline',
-      },
+      },*/
     ],
   },
 
-  {
+ /* {
     title: 'Gestion des Resultats',
     icon: 'plus-square-outline',
     children: [
@@ -94,7 +95,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
-
+*/
 
   {
     title: 'Conversations',

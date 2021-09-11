@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-10">
+  <div class="col-lg-6">
     <nb-card>
       <nb-card-header>Formulaire d'enregistrement d'un enseignant</nb-card-header>
 
@@ -11,44 +11,54 @@
           <strong>Warning!</strong> {{error}}.
         </nb-alert>
         <div class="full-name-inputs">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-12">
             <label class="label" for="registration_number">Registration number</label>
             <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="registration number"
                  formControlName="registration_number">
           </div>
         </div>
+        
         <div class="full-name-inputs">
-          <div class="form-group col-md-6">
-            <label class="label" for="pin_code">Pin Code</label>
-            <input type="text" id="pin_code" class="form-control" nbInput fullWidth placeholder="pin code"
-                   formControlName="pin_code">
-          </div>
-          <div class="form-group col-md-6">
-            <label class="label" for="phone_number">phone number</label>
-            <input type="text" id="phone_number" class="form-control" nbInput fullWidth shape="semi-round" placeholder="+237675555555"
-                   formControlName="phone_number">
-          </div>
-        </div>
-        <div class="full-name-inputs">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-12">
             <label class="label" for="first_name">First Name</label>
             <input type="text" id="first_name" class="form-control" nbInput fullWidth placeholder="First name"
                  formControlName="first_name">
           </div>
-          <div class="form-group col-md-6">
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
             <label class="label" for="last_name">Last Name</label>
             <input type="text" id="last_name" class="form-control" nbInput fullWidth placeholder="Last Name"
                  formControlName="last_name">
           </div>
         </div>
+
         <div class="full-name-inputs">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-12">
+            <label class="label" for="last_name">school</label>
+            <input type="number" id="last_name" class="form-control" nbInput fullWidth placeholder="id school"
+                 formControlName="school_id">
+          </div>
+        </div>
+
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="last_name">utilisateur</label>
+            <input type="number" id="last_name" class="form-control" nbInput fullWidth placeholder="user id"
+                 formControlName="user_id">
+          </div>
+        </div>
+
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
             <label class="label" for="birth_date">Birth Date</label>
             <input [nbDatepicker]="datepicker" id="birth_date" class="form-control" nbInput fullWidth
                    placeholder="" formControlName="birth_date" fieldSize="medium">
             <nb-datepicker #datepicker></nb-datepicker>
           </div>
-          <div class="form-group col-md-6">
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
             <label class="label" for="title">Title</label>
             <select id="title" class="form-control" fullWidth  formControlName="title">
               <option value="male">Mr</option>
@@ -57,7 +67,7 @@
           </div>
         </div>
         <div class="full-name-inputs">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-12">
             <label class="label" for="picture">Photo de profil</label>
             <input-file
               id="picture"
@@ -88,5 +98,73 @@
         </div>
       </nb-card-body>
     </nb-card>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="row">
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Ressources connexes</nb-card-header>
+    
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+              <hr>
+              <label class="label" for="registration_number">Utilisateur</label>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="user id"
+                    (keyup)="onKey1($event)" value="{{resultat1}}" #search>
+
+                   <div class="col-md-12">
+                    <ng-container *ngIf="inptShow1">
+                      <div class="show_search">
+                        <ng-container *ngFor="let user of users"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show1(user.full_name,user.id)"> {{user.full_name}}</p></div>
+                        </ng-container>
+                      </div>
+                    </ng-container>
+                   </div>
+                 
+            </div>
+          
+          </div>
+
+
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+              
+              <label class="label" for="registration_number">School</label>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="school id"
+                    (keyup)="onKey2($event)" value="{{resultat2}}" #search>
+
+                   <div class="col-md-12">
+                    <ng-container *ngIf="inptShow2">
+                      <div class="show_search">
+                        <ng-container *ngFor="let school of schools"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show2(school.name,school.id)"> {{school.name}}</p></div>
+                        </ng-container>
+                      </div>
+                    </ng-container>
+                   </div>
+                   <hr>
+            </div>
+          
+          </div>
+        </nb-card>
+      </div>
+
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Relié par des ressources</nb-card-header>
+    
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+             <hr>
+             <hr>
+            </div>
+          
+          </div>
+        </nb-card>
+      </div>
+    </div>
+    
   </div>
 </div>

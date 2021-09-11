@@ -24,17 +24,33 @@ export class AbsentComponent implements OnInit {
   students: any[];
 
 
+  resultat2:any;
+  resultat_id2:any;
+  search2:any;
+  get_searc2:any;
+  get_searc_id2:any;
+  dataTutors2: any=[];
+  tab_or2: any=[];
+  inpt_search2: any;
+  inptShow2=false;
+  tutors2:any[];
+  student_search2: any[];
+  school_years: any[];
+  tab2: any[];
+  school_year_search2: any[];
+
 
   absentForm: FormGroup;
   loading: boolean = false;
   user: any;
   errors = [];
   student: any;
-  school_year: any;
+
   time_slots: any[];
   old_absent: any;
   tab: any[];
   tutors_search: any[];
+  school_year_search: any[];
 
   constructor(private _formBuilder: FormBuilder, public router: Router, private route: ActivatedRoute,
               public api: ApiService, public httpClient: HttpClient) {
@@ -44,7 +60,7 @@ export class AbsentComponent implements OnInit {
         should_paginate: false,
         status: 1,
       }).subscribe((data) => {
-        this.school_year = data[0];
+        this.school_years = data;
         console.log(data);
       }, (error) => {
         console.log(error);
@@ -85,6 +101,7 @@ export class AbsentComponent implements OnInit {
             this.old_absent = absent;
             this.absentForm.controls['registration_number'].setValue(this.old_absent.student.registration_number);
             this.absentForm.controls['time_slot_id'].setValue(this.old_absent.time_slot.id);
+            this.absentForm.controls['school_year_id'].setValue(this.old_absent.school_year_id);
             this.absentForm.controls['day'].setValue(this.old_absent.day);
             this.loading = false;
           }, (err) => {
@@ -120,7 +137,7 @@ export class AbsentComponent implements OnInit {
           delete params.registration_number;
           this.student = data[0];
           params.student_id = this.student.id;
-          params.school_year_id = this.school_year.id;
+        
           console.log(params);
           if (this.old_absent) {
             this.api.Absent.one(this.old_absent.id + '')
@@ -173,6 +190,7 @@ export class AbsentComponent implements OnInit {
     this.absentForm = this._formBuilder.group({
       registration_number: ['', Validators.required],
       time_slot_id: ['', Validators.required],
+      school_year_id: ['', Validators.required],
       day: ['', Validators.required],
     });
   }
@@ -197,10 +215,7 @@ export class AbsentComponent implements OnInit {
         
     }
   
-    
-  
-  
-    
+
     }
     
     values = '';
@@ -239,4 +254,69 @@ export class AbsentComponent implements OnInit {
   }
   
   }
+
+
+
+
+
+
+
+
+//event onkey
+searchForm2(){
+
+  // console.log(this.students);
+   this.school_year_search2=[];
+  this.tab2=[]; 
+   
+   for (let nb = 0; nb <this.school_years.length; nb++) {
+    if(this.inpt_search2!=""){
+      
+     if(this.school_years[nb].from_year.toString().includes(this.inpt_search2.toString())===true){
+      console.log(this.school_years[nb].from_year);
+       this.tab2.push(this.school_years[nb]);
+       this.school_year_search2=this.tab2;
+     
+     }
+    }
+     
+ }
+ }
+ 
+ values2 = '';
+onKey2(event: any) { // without type info
+this.values2 = event.target.value ;
+
+
+if(this.values2!=""){
+this.resultat2=event.target.value;
+this.inptShow2=true;
+this.inpt_search2=this.values2;
+
+console.log(this.inpt_search2);
+this.searchForm2();
+
+
+}else{
+
+this.dataTutors2=this.tab_or2;
+this.inptShow2=false;
+this.resultat2="";
+this.resultat_id2="";
+}
+
+}
+
+click_Show2(searc,searc_id){
+this.get_searc2=searc;
+this.get_searc_id2=searc_id;
+this.resultat2=this.get_searc2;
+this.resultat_id2=this.get_searc_id2;
+this.inptShow2=false;
+if(this.resultat_id2){
+  this.absentForm.controls['school_year_id'].setValue(this.resultat_id2);
+
+}
+
+}
 }

@@ -10,6 +10,20 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./message-add.component.scss']
 })
 export class MessageAddComponent implements OnInit {
+  resultat:any;
+  resultat_id:any;
+  search:any;
+  get_searc:any;
+  get_searc_id:any;
+  dataTutors: any=[];
+  tab_or: any=[];
+  inpt_search: any;
+  inptShow=false;
+  tutors:any[];
+  student_search: any[];
+  students: any[];
+
+
 
   messageForm: FormGroup;
   loading: boolean = false;
@@ -20,11 +34,24 @@ export class MessageAddComponent implements OnInit {
   type: string = 'school';
   classes: any[];
   old_message: any;
+  chats: any;
+  tab: any[];
+  chat_search: any[];
 
   constructor(private _formBuilder: FormBuilder, public router: Router, private route: ActivatedRoute,
               public api: ApiService, public httpClient: HttpClient, public datepipe: DatePipe) {
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.api.ChatUser
+    .getList({
+      should_paginate: false,
+      _includes:'user',
+      _sortDir: 'desc',
+    })
+    .subscribe( chat => {
+
+        this.chats = chat;
+    });
     this.createForm();
     
     
@@ -43,8 +70,8 @@ export class MessageAddComponent implements OnInit {
             this.messageForm.controls['body'].setValue(this.old_message.body);
             this.messageForm.controls['status'].setValue(this.old_message.status);
             this.messageForm.controls['type'].setValue(this.old_message.type);
-            this.messageForm.controls['char_user_id'].setValue(this.old_message.char_user_id);
-            this.messageForm.controls['subject'].setValue(this.old_message.subject);
+            this.messageForm.controls['chat_user_id'].setValue(this.old_message.chat_user_id);
+         
 
             
             this.loading = false;
@@ -111,12 +138,73 @@ export class MessageAddComponent implements OnInit {
     this.messageForm = this._formBuilder.group({
       status: ['', Validators.required],
       type: ['', Validators.required],
-      char_user_id: ['', Validators.required],
+      chat_user_id: ['', Validators.required],
       body: ['', Validators.required],
-      subject: ['', Validators.required],
+   
     });
   }
 
+
+      //event onkey
+      searchForm(){
+
+        // console.log(this.students);
+         this.chat_search=[];
+        this.tab=[]; 
+     
+         for (let nb = 0; nb <this.chats.length; nb++) {
+          if(this.inpt_search!=""){
+         
+           if(this.chats[nb].user.full_name.toUpperCase().includes(this.inpt_search.toUpperCase())===true){
+             
+             this.tab.push(this.chats[nb]);
+             this.chat_search=this.tab;
+           
+           }
+          }
+           
+       }
+     
+   
+       }
+       
+       values = '';
+     
+     onKey(event: any) { // without type info
+       this.values = event.target.value ;
+      
+         
+       if(this.values!=""){
+         this.resultat=event.target.value;
+         this.inptShow=true;
+         this.inpt_search=this.values;
+         
+         console.log(this.inpt_search);
+         this.searchForm();
+         
+       
+       }else{
+         
+        this.dataTutors=this.tab_or;
+         this.inptShow=false;
+         this.resultat="";
+         this.resultat_id="";
+       }
+      
+     }
+     
+     click_Show(searc,searc_id){
+       this.get_searc=searc;
+       this.get_searc_id=searc_id;
+     this.resultat=this.get_searc;
+     this.resultat_id=this.get_searc_id;
+     this.inptShow=false;
+     if(this.resultat_id){
+       console.log(this.resultat_id);
+       this.messageForm.controls['chat_user_id'].setValue(this.resultat_id);
+     }
+     
+     }
 
         
     }

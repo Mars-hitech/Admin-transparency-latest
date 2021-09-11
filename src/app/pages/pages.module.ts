@@ -110,6 +110,7 @@ import { PermissionShowComponent } from './permission-show/permission-show.compo
 import { PermissionRoleListComponent } from './permission-role-list/permission-role-list.component';
 import { PermissionRoleAddComponent } from './permission-role-add/permission-role-add.component';
 import { PermissionRoleShowComponent } from './permission-role-show/permission-role-show.component';
+import { SortDirective } from './directive/sort.directive';
 @NgModule({
   imports: [
     HttpClientModule,
@@ -234,6 +235,7 @@ import { PermissionRoleShowComponent } from './permission-role-show/permission-r
     PermissionRoleListComponent,
     PermissionRoleAddComponent,
     PermissionRoleShowComponent,
+    SortDirective,
   ],
 })
 export class PagesModule {

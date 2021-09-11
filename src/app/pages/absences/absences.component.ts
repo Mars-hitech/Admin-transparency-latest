@@ -86,4 +86,6 @@ export class AbsencesComponent {
         console.log(error);
       });
   }
+
+  
 }

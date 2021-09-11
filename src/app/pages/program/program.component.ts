@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ApiService} from '../../services/api.service';
 import {HttpClient} from '@angular/common/http';
 
@@ -21,8 +21,9 @@ export class ProgramComponent implements OnInit {
   classes: any[];
   matieres: any[];
   teachers: any[];
+  old_program: any;
 
-  constructor(private _formBuilder: FormBuilder, public router: Router,
+  constructor(private _formBuilder: FormBuilder, public router: Router,private route: ActivatedRoute,
               public api: ApiService, public httpClient: HttpClient) {
     this.loading = true;
     this.api.SchoolYear.getList(
@@ -79,6 +80,28 @@ export class ProgramComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(async (route_params: any) => {
+      if (route_params.params.id) {
+        console.log(route_params.params.id);
+        this.loading = true;
+        this.api.Program.one(route_params.params.id)
+          .get()
+          .subscribe((event) => {
+            console.log(event);
+            this.old_program = event;
+           
+            this.programForm.controls['classe_id'].setValue(this.old_program.classe_id);
+            this.programForm.controls['matiere_id'].setValue(this.old_program.matiere_id);
+            this.programForm.controls['teacher_id'].setValue(this.old_program.teacher_id);
+            this.programForm.controls['time_slot_id'].setValue(this.old_program.time_slot_id);
+            this.programForm.controls['coef'].setValue(this.old_program.coef);
+            this.loading = false;
+          }, (err) => {
+            console.log(err);
+            this.loading = false;
+          });
+      }
+    });
   }
 
   cancel() {

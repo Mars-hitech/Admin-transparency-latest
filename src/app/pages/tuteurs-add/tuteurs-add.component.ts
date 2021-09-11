@@ -10,6 +10,21 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./tuteurs-add.component.scss']
 })
 export class TuteursAddComponent implements OnInit {
+
+  resultat:any;
+  resultat_id:any;
+  search:any;
+  get_searc:any;
+  get_searc_id:any;
+  dataTutors: any=[];
+  tab_or: any=[];
+  inpt_search: any;
+  inptShow=false;
+  tutors:any[];
+ user_search: any[];
+  students: any[];
+
+
   tutorForm: FormGroup;
   loading: boolean = false;
   errors = [];
@@ -25,6 +40,7 @@ export class TuteursAddComponent implements OnInit {
   dropdownSettings = {};
   roles: any;
   users: any;
+  tab: any[];
   constructor(private _formBuilder: FormBuilder, public router: Router, private route: ActivatedRoute,
               public api: ApiService, public httpClient: HttpClient, public datepipe: DatePipe) {
 
@@ -83,15 +99,15 @@ export class TuteursAddComponent implements OnInit {
     } else {
       this.loading = true;
       const params = this.tutorForm.value;
+      params.user_id=this.old_tutor.user_id;
+      
       console.log(params);
       if (this.old_tutor) {
-        console.log(this.old_tutor.id)
         this.api.Tutor.one(this.old_tutor.id + '')
           .put(params)
           .subscribe((result) => {
-            console.log(result);
             this.loading = false;
-            
+            console.log(result);
             this.router.navigate(['/pages/tuteurs-list']);
           }, (error) => {
             this.loading = false;
@@ -103,7 +119,6 @@ export class TuteursAddComponent implements OnInit {
             }, e_array);
           });
       } else {
-        console.log('sav')
         this.api.Tutor
           .post(params)
           .subscribe((result) => {
@@ -142,6 +157,66 @@ export class TuteursAddComponent implements OnInit {
     });
   }
 
+
+        //event onkey
+        searchForm(){
+
+          // console.log(this.students);
+           this.user_search=[];
+          this.tab=[]; 
+       
+           for (let nb = 0; nb <this.users.length; nb++) {
+            if(this.inpt_search!=""){
+           
+             if(this.users[nb].full_name.toUpperCase().includes(this.inpt_search.toUpperCase())===true){
+               
+               this.tab.push(this.users[nb]);
+               this.user_search=this.tab;
+             
+             }
+            }
+             
+         }
+       
+     
+         }
+         
+         values = '';
+       
+       onKey(event: any) { // without type info
+         this.values = event.target.value ;
+        
+           
+         if(this.values!=""){
+           this.resultat=event.target.value;
+           this.inptShow=true;
+           this.inpt_search=this.values;
+           
+           console.log(this.inpt_search);
+           this.searchForm();
+           
+         
+         }else{
+           
+          this.dataTutors=this.tab_or;
+           this.inptShow=false;
+           this.resultat="";
+           this.resultat_id="";
+         }
+        
+       }
+       
+       click_Show(searc,searc_id){
+         this.get_searc=searc;
+         this.get_searc_id=searc_id;
+       this.resultat=this.get_searc;
+       this.resultat_id=this.get_searc_id;
+       this.inptShow=false;
+       if(this.resultat_id){
+         this.tutorForm.controls['user_id'].setValue(this.resultat_id);
+       }
+       
+       }
 
         
     }

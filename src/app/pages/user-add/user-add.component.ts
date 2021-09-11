@@ -138,7 +138,7 @@ export class UserAddComponent implements OnInit {
       is_active: ['', Validators.required],
       password: ['', Validators.required],
       pin_code: ['', Validators.required],
-      reglage: ['', Validators.required],
+      reglage: [''],
 
         
     });

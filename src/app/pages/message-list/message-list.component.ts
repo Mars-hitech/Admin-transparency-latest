@@ -14,7 +14,7 @@ export class MessageListComponent {
   page = 1;
   pageSize = 10;
   collectionSize = 0;
-  message: any;
+  _message: any;
   dialog: NbDialogRef<any>;
 
   constructor(private router: Router, private dialogService: NbDialogService, public api: ApiService) {
@@ -24,6 +24,7 @@ export class MessageListComponent {
         _includes: 'chat_user.user',
       }).subscribe( messages => {
         this.data = messages;
+        console.log(this.data  )
     });
   }
 
@@ -47,7 +48,8 @@ export class MessageListComponent {
 
 
   open(dialog: TemplateRef<any>, message: any) {
-    this.message = message;
+    this._message = message;
+    console.log(this._message)
     this.dialog = this.dialogService.open(dialog, { context: status });
   }
   edit(id_: string) {
@@ -65,11 +67,11 @@ export class MessageListComponent {
   delete() {
     this.dialog.close();
     this.loading = true;
-    console.log(this.message);
-    this.api.Message.one(this.message.id + '')
+    console.log(this._message);
+    this.api.Message.one(this._message.id + '')
       .remove()
       .subscribe((data) => {
-        this.data = this.data.filter(item => item.id !== this.message.id);
+        this.data = this.data.filter(item => item.id !== this._message.id);
         this.loading = false;
         console.log(data);
       } , (error) => {

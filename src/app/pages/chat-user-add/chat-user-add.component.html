@@ -11,37 +11,23 @@
           <strong>Warning!</strong> {{error}}.
         </nb-alert>
         <div class="full-name-inputs">
-          <div class="form-group col-md-12" *ngIf="old_chat_user.is_admin===1">
-            <label class="label" for="subject">Est administrateur? {{old_chat_user.is_admin}}</label>
+          <div class="form-group col-md-12" >
+            <label class="label" for="subject">Est administrateur? </label>
             <div class="form-check">
-              <input class="form-check-input" type="radio" formControlName="is_admin" id="flexRadioDefault1" [value]=true checked>
+              <input class="form-check-input" type="radio" formControlName="is_admin" id="flexRadioDefault1" [value]=1 >
               <label class="form-check-label" for="flexRadioDefault1">
                yes
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" formControlName="is_admin" id="flexRadioDefault2" [value]=false >
+              <input class="form-check-input" type="radio" formControlName="is_admin" id="flexRadioDefault2" [value]=0 >
               <label class="form-check-label" for="flexRadioDefault2">
                no
               </label>
             </div>
           </div>
 
-          <div class="form-group col-md-12" *ngIf="old_chat_user.is_admin===0">
-            <label class="label" for="subject">Est administrateur? {{old_chat_user.is_admin}}</label>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" formControlName="is_admin" id="flexRadioDefault1" [value]=true>
-              <label class="form-check-label" for="flexRadioDefault1">
-               yes
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" formControlName="is_admin" id="flexRadioDefault2" [value]=false checked>
-              <label class="form-check-label" for="flexRadioDefault2">
-               no
-              </label>
-            </div>
-          </div>
+      
         </div>
 
         <div class="full-name-inputs">
@@ -106,7 +92,7 @@
                    <div class="col-md-12">
                     <ng-container *ngIf="inptShow">
                       <div class="show_search">
-                        <ng-container *ngFor="let user of users"> 
+                        <ng-container *ngFor="let user of user_search"> 
                             <div><p class="text-secondary mb-1" (click)="click_Show(user.full_name,user.id)"> {{user.full_name}}</p></div>
                         </ng-container>
                       </div>
@@ -114,7 +100,26 @@
                    </div>
                    <hr>
             </div>
-          
+          </div>
+
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+              
+              <label class="label" for="registration_number">conversation</label>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="chat title"
+                    (keyup)="onKey2($event)" value="{{resultat2}}" #search>
+
+                   <div class="col-md-12">
+                    <ng-container *ngIf="inptShow2">
+                      <div class="show_search">
+                        <ng-container *ngFor="let chat of chat_search"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show2(chat.title,chat.id)"> {{chat.title}}</p></div>
+                        </ng-container>
+                      </div>
+                    </ng-container>
+                   </div>
+                 
+            </div>
           </div>
         </nb-card>
       </div>

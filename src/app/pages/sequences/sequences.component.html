@@ -28,7 +28,8 @@
         <th scope="col">#</th>
         <th scope="col">Code</th>
         <th scope="col">Nom</th>
-        <th scope="col">Trimestre</th>
+      
+        <th scope="col">Modifié le </th>
         <th scope="col">Action</th>
       </tr>
       </thead>
@@ -37,7 +38,8 @@
         <th scope="row">{{(page - 1) * pageSize + i}}</th>
         <td>{{ sequence.code}}</td>
         <td>{{ sequence.name }}</td>
-        <td>{{ sequence.trimestre.name }}</td>
+     
+        <td>{{ sequence.updated_at}}</td>
         <td>
           <button type="button" class="btn btn-outline-primary btn-sm"  (click)="edit(sequence.id)">
             <i class="fa fa-check-circle"></i> Modifier

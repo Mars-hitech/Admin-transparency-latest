@@ -21,70 +21,25 @@ export class PaysAddComponent implements OnInit {
   classes: any[];
   old_country: any;
 
-  dropdownList = [];
-  selectedItems = [];
-  dropdownSettings = {};
-  roles: any;
-  users: any;
-  tab1: any[];
-  user_search: any[];
-  inpt_search: string;
-  resultat_id1: string;
-  resultat1: string;
-  inptShow1=false;
-  dataTutors1: any;
-  tab_or1: any;
-  get_searc: any;
-  get_searc_id: any;
-
-  schools: any;
-  tab2: any[];
-  school_search: any[];
-  inpt_search2: string;
-  resultat_id2: string;
-  resultat2: string;
-  inptShow2=false;
-  dataTutors2: any;
-  tab_or2: any;
-  get_searc2: any;
-  get_searc_id2: any;
   constructor(private _formBuilder: FormBuilder, public router: Router, private route: ActivatedRoute,
               public api: ApiService, public httpClient: HttpClient, public datepipe: DatePipe) {
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.api.User.getList(
-      {
-        should_paginate: false,
-      }).subscribe((data) => {
-      this.users = data;
-      console.log(data);
-    }, (error) => {
-      console.log(error);
-    });
-
-    this.api.School.getList(
-      {
-        should_paginate: false,
-      }).subscribe((data) => {
-      this.schools = data;
-      console.log(data);
-    }, (error) => {
-      console.log(error);
-    });
-    this.createForm(); 
+    this.createForm();
+    
+    
   }
 
   ngOnInit() {
     this.route.paramMap.subscribe(async (route_params: any) => {
       if (route_params.params.id) {
-        console.log(route_params.params.id);
+       // console.log(route_params.params.id);
         this.loading = true;
         this.api.Country.one(route_params.params.id)
           .get()
-          .subscribe((event) => {
+          .subscribe(event=> {
             console.log(event);
             this.old_country = event;
-            
             this.countryForm.controls['capital'].setValue(this.old_country.capital);
             this.countryForm.controls['citizenship'].setValue(this.old_country.citizenship);
             this.countryForm.controls['country_code'].setValue(this.old_country.country_code);
@@ -106,7 +61,7 @@ export class PaysAddComponent implements OnInit {
           //  this.countryForm.controls['flag'].setValue(this.old_country.flag);
             this.countryForm.controls['is_covered'].setValue(this.old_country.is_covered);
             this.countryForm.controls['is_activated'].setValue(this.old_country.is_activated);
-
+            
             this.loading = false;
           }, (err) => {
             console.log(err);
@@ -120,32 +75,51 @@ export class PaysAddComponent implements OnInit {
     this.router.navigate(['/pages/pays-list']);
   }
 
-
   save() {
+    const params = this.countryForm.value;
     if (!(this.countryForm.dirty && this.countryForm.valid)) {
-      alert('Please fill all form fields');
+    // alert('Please fill all form fields');
     } else {
       this.loading = true;
-      const params = this.countryForm.value;
-      
+    //  const params = this.countryForm.value;
       console.log(params);
-      this.api.Country
-        .post(params)
-        .subscribe((result) => {
-          this.loading = false;
-          console.log(result);
-          this.router.navigate(['/pages/pays-list']);
-        }, (error) => {
-          this.loading = false;
-          console.log(error);
-          const e_array = error.data.error.errors;
-          const self = this;
-          Object.keys(e_array).forEach(function(key, index) {
-            self.errors.push(this[key][0]);
-          }, e_array);
-        });
+      if (this.old_country) {
+        this.api.Country.one(this.old_country.id + '')
+          .put(params)
+          .subscribe((result) => {
+            this.loading = false;
+            console.log(result);
+            this.router.navigate(['/pages/pays-list']);
+          }, (error) => {
+            this.loading = false;
+            console.log(error);
+            const e_array = error.data.error.errors;
+            const self = this;
+            Object.keys(e_array).forEach(function(key, index) {
+              self.errors.push(this[key][0]);
+            }, e_array);
+          });
+      } else {
+        console.log(params)
+        this.api.Country
+          .post(params)
+          .subscribe(result => {
+            this.loading = false;
+            console.log(result);
+            this.router.navigate(['/pages/pays-list']);
+          }, (error) => {
+            this.loading = false;
+            console.log(error);
+            const e_array = error.data.error.errors;
+            const self = this;
+            Object.keys(e_array).forEach(function(key, index) {
+              self.errors.push(this[key][0]);
+            }, e_array);
+          });
+      }
     }
   }
+
   onClose(error: any) {
     this.errors = this.errors.filter(err => err !== error);
   }
@@ -153,32 +127,27 @@ export class PaysAddComponent implements OnInit {
   private createForm() {
     this.countryForm = this._formBuilder.group({
 
-            capital: [''],
-            citizenship: [''],
-            country_code: [''],
-            currency: [''],
-            currency_code: [''],
-            currency_sub_unit: [''],
-            currency_symbol: [''],
-            currency_decimals: [''],
-            full_name: [''],
-            iso_3166_2: [''],
-            iso_3166_3: [''],
-            name: [''],
-            region_code: [''],
-            sub_region_code: [''],
-            eea: [''],
-            calling_code: [''],
-            is_covered: [''],
-            is_activated: [''],
-           
 
-        
+            capital: ['', Validators.required],
+            citizenship: ['', Validators.required],
+            country_code: ['', Validators.required],
+            currency: ['', Validators.required],
+            currency_code: ['', Validators.required],
+            currency_sub_unit: ['', Validators.required],
+            currency_symbol: ['', Validators.required],
+            currency_decimals: ['', Validators.required],
+            full_name: ['', Validators.required],
+            iso_3166_2: ['', Validators.required],
+            iso_3166_3: ['', Validators.required],
+            name: ['', Validators.required],
+            region_code: ['', Validators.required],
+            sub_region_code: ['', Validators.required],
+            eea: ['', Validators.required],
+            calling_code: ['', Validators.required],
+            is_covered: ['', Validators.required],
+            is_activated: ['', Validators.required],
     });
   }
-
-
-
 
 
         

@@ -48,6 +48,7 @@ export class PermissionRoleListComponent {
   
   
     open(dialog: TemplateRef<any>, permission_role: any) {
+     
       this._permission = permission_role;
       this.dialog = this.dialogService.open(dialog, { context: status });
     }

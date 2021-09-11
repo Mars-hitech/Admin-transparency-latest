@@ -63,4 +63,10 @@ export class ProgramsComponent {
         console.log(error);
       });
   }
+
+  edit(id_: string) {
+    this.router.navigate(['/pages/add-program/' + id_], {
+      replaceUrl: true,
+    });
+  }
 }

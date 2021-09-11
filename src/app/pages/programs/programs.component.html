@@ -45,7 +45,7 @@
         <td>{{ program.time_slot.from_hour }} - {{ program.time_slot.to_hour }}</td>
         <td>{{ program.school_year.from_year }} - {{ program.school_year.to_year }}</td>
         <td>
-          <button type="button" class="btn btn-outline-primary btn-sm"  (click)="open(dialog, program)">
+          <button type="button" class="btn btn-outline-primary btn-sm"  (click)="edit(program.id)">
             <i class="fa fa-check-circle"></i> Modifier
           </button>
           <button type="button" class="btn btn-outline-danger btn-sm ml-1" (click)="open(dialog, program)">

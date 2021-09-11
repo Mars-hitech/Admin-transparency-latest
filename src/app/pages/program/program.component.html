@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-10">
+  <div class="col-lg-6">
     <nb-card>
       <nb-card-header>Formulaire d'enregistrement d'un programme</nb-card-header>
 
@@ -11,13 +11,15 @@
           <strong>Warning!</strong> {{error}}.
         </nb-alert>
         <div class="full-name-inputs">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-12">
             <label class="label" for="classe_id">Classe</label>
             <select id="classe_id" class="form-control"  formControlName="classe_id">
               <option value="{{c.id}}" *ngFor="let c of classes">{{c.name}}</option>
             </select>
           </div>
-          <div class="form-group col-md-6">
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
             <label class="label" for="matiere_id">Matiere</label>
             <select id="matiere_id" class="form-control"  formControlName="matiere_id">
               <option value="{{m.id}}" *ngFor="let m of matieres">{{m.name}}</option>
@@ -25,13 +27,15 @@
           </div>
         </div>
         <div class="full-name-inputs">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-12">
             <label class="label" for="time_slot_id">Plage horaire</label>
             <select id="time_slot_id" class="form-control"  formControlName="time_slot_id">
               <option value="{{t.id}}" *ngFor="let t of time_slots">{{ t.day }} - {{t.from_hour}} à {{t.to_hour}}</option>
             </select>
           </div>
-          <div class="form-group col-md-6">
+        </div>
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
             <label class="label" for="teacher_id">Enseignant</label>
             <select id="teacher_id" class="form-control"  formControlName="teacher_id">
               <option value="{{t.id}}" *ngFor="let t of teachers">{{t.first_name}} {{t.last_name}}</option>
@@ -39,7 +43,7 @@
           </div>
         </div>
         <div class="full-name-inputs">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-12">
             <label class="label" for="coef">Coefficient</label>
             <input type="text" id="coef" class="form-control" nbInput fullWidth placeholder="coef"
                    formControlName="coef">
@@ -65,5 +69,46 @@
         </div>
       </nb-card-body>
     </nb-card>
+  </div>
+
+  
+  <div class="col-lg-6">
+    <div class="row">
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Ressources connexes</nb-card-header>
+    
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+              <hr>
+        
+                   <hr>
+            </div>
+          </div>
+
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+              
+                 
+            </div>
+          </div>
+        </nb-card>
+      </div>
+
+      <div class="col-lg-12">
+        <nb-card>
+          <nb-card-header>Relié par des ressources</nb-card-header>
+    
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+             <hr>
+             <hr>
+            </div>
+          
+          </div>
+        </nb-card>
+      </div>
+    </div>
+    
   </div>
 </div>

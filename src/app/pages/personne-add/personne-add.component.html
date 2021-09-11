@@ -32,6 +32,7 @@
             <input [nbDatepicker]="datepicker" id="birth_date" class="form-control" nbInput fullWidth
                    placeholder="" formControlName="birth_date" fieldSize="medium">
             <nb-datepicker #datepicker></nb-datepicker>
+            
           </div>
         
         </div>
@@ -39,7 +40,7 @@
         <div class="full-name-inputs">
           <div class="form-group col-md-12">
             <label class="label" for="first_name">user id</label>
-            <input type="text" id="first_name" class="form-control" nbInput fullWidth placeholder="last name"
+            <input type="number" id="first_name" class="form-control" nbInput fullWidth placeholder="last name"
                  formControlName="user_id">
           </div>
         </div>
@@ -87,7 +88,7 @@
           <div class="full-name-inputs">
             <div class="form-group col-md-12">
               <label class="label" for="registration_number">Tuteur</label>
-              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="matricule"
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="nom"
                     (keyup)="onKey($event)" value="{{resultat}}" #search>
 
                    <div class="col-md-12">

@@ -10,6 +10,26 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./personne-add.component.scss']
 })
 export class PersonneAddComponent implements OnInit {
+
+  resultat:any;
+  resultat_id:any;
+  search:any;
+  get_searc:any;
+  get_searc_id:any;
+  dataTutors: any=[];
+  tab_or: any=[];
+  inpt_search: any;
+  inptShow=false;
+  tutors:any[];
+ user_search: any[];
+  students: any[];
+
+
+
+
+
+
+
   personForm: FormGroup;
   loading: boolean = false;
   errors = [];
@@ -25,6 +45,8 @@ export class PersonneAddComponent implements OnInit {
   dropdownSettings = {};
   roles: any;
   users: any;
+  tab: any[];
+  data: any;
   constructor(private _formBuilder: FormBuilder, public router: Router, private route: ActivatedRoute,
               public api: ApiService, public httpClient: HttpClient, public datepipe: DatePipe) {
 
@@ -40,6 +62,14 @@ export class PersonneAddComponent implements OnInit {
     }, (error) => {
       this.loading = false;
       console.log(error);
+    });
+    this.api.User.getList(
+      {
+        should_paginate: false,
+        
+      }).subscribe( result => {
+        this.users = result;
+        console.log(this.users)
     });
     this.createForm();
     
@@ -78,15 +108,17 @@ export class PersonneAddComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/pages/roles-list']);
+    this.router.navigate(['/pages/personne-list']);
   }
 
   save() {
+    const d = new Date(Date.parse(this.personForm.get('birth_date').value)).toISOString().split('T')[0];
     if (!(this.personForm.dirty && this.personForm.valid)) {
      /*alert('Please fill all form fields');*/
     } else {
       this.loading = true;
       const params = this.personForm.value;
+      params.birth_date = d;
       console.log(params);
       if (this.old_person) {
         this.api.Person.one(this.old_person.id + '')
@@ -94,7 +126,7 @@ export class PersonneAddComponent implements OnInit {
           .subscribe((result) => {
             this.loading = false;
             console.log(result);
-            this.router.navigate(['/pages/roles-list']);
+            this.router.navigate(['/pages/personne-list']);
           }, (error) => {
             this.loading = false;
             console.log(error);
@@ -110,7 +142,7 @@ export class PersonneAddComponent implements OnInit {
           .subscribe((result) => {
             this.loading = false;
             console.log(result);
-            this.router.navigate(['/pages/roles-list']);
+            this.router.navigate(['/pages/personne-list']);
           }, (error) => {
             this.loading = false;
             console.log(error);
@@ -135,6 +167,7 @@ export class PersonneAddComponent implements OnInit {
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
       user_id: ['', Validators.required],
+      birth_date: ['', Validators.required],
      
  
 
@@ -142,6 +175,66 @@ export class PersonneAddComponent implements OnInit {
     });
   }
 
+
+      //event onkey
+      searchForm(){
+
+        // console.log(this.students);
+         this.user_search=[];
+        this.tab=[]; 
+     
+         for (let nb = 0; nb <this.users.length; nb++) {
+          if(this.inpt_search!=""){
+         
+           if(this.users[nb].full_name.toUpperCase().includes(this.inpt_search.toUpperCase())===true){
+             
+             this.tab.push(this.users[nb]);
+             this.user_search=this.tab;
+           
+           }
+          }
+           
+       }
+     
+   
+       }
+       
+       values = '';
+     
+     onKey(event: any) { // without type info
+       this.values = event.target.value ;
+      
+         
+       if(this.values!=""){
+         this.resultat=event.target.value;
+         this.inptShow=true;
+         this.inpt_search=this.values;
+         
+         console.log(this.inpt_search);
+         this.searchForm();
+         
+       
+       }else{
+         
+        this.dataTutors=this.tab_or;
+         this.inptShow=false;
+         this.resultat="";
+         this.resultat_id="";
+       }
+      
+     }
+     
+     click_Show(searc,searc_id){
+       this.get_searc=searc;
+       this.get_searc_id=searc_id;
+     this.resultat=this.get_searc;
+     this.resultat_id=this.get_searc_id;
+     this.inptShow=false;
+     if(this.resultat_id){
+       this.personForm.controls['user_id'].setValue(this.resultat_id);
+     }
+     
+     }
 
         
     }

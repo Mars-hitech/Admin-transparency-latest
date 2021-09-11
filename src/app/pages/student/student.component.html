@@ -30,91 +30,36 @@
     <nb-card>
       <nb-card-header>Formulaire d'enregistrement d'un eleve</nb-card-header>
 
-      <nb-card-body [formGroup]="studentForm" [nbSpinner]="loading"
+      <nb-card-body [formGroup]="inscritForm" [nbSpinner]="loading"
                     nbSpinnerStatus="danger"
                     nbSpinnerSize="large"
                     nbSpinnerMessage="Enregistrement en cours...">
         <nb-alert *ngFor="let error of errors" status="warning" closable (close)="onClose(error)">
           <strong>Warning!</strong> {{error}}.
         </nb-alert>
-        <div class="full-name-inputs" *ngIf="!old_student">
-          <div class="form-group col-md-12">
-            <label class="label" for="classe_id">Classe</label>
-            <select id="classe_id" class="form-control" formControlName="classe_id">
-              <option value="{{c.id}}" *ngFor="let c of classes">{{c.name}}</option>
-            </select>
-          </div>
-        </div>
-        <div class="full-name-inputs" *ngIf="old_student">
-          <div class="form-group col-md-12">
-            <label class="label" for="classe_id">Classe</label>
-            <input type="text" id="tutor_phone_number" class="form-control" nbInput fullWidth shape="semi-round" placeholder="Tutor's phone"
-            value="{{this.old_student.classe.name}}" disabled>
-          </div>
-        </div>
-        <div class="full-name-inputs">
-          <div class="form-group col-md-12">
-            <label class="label" for="registration_number">Registration number</label>
-            <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="matricule"
-                 formControlName="registration_number">
-          </div>
-        </div>
-          <div class="full-name-inputs">
-          <div class="form-group col-md-12">
-            <label class="label" for="tutor_phone_number">Tutor phone number</label>
-            <input type="text" id="tutor_phone_number" class="form-control" nbInput fullWidth shape="semi-round" placeholder="Tutor's phone"
-                   formControlName="tutor_phone_number">
-          </div>
-        </div>
-        <div class="full-name-inputs">
-          <div class="form-group col-md-12">
-            <label class="label" for="first_name">First Name</label>
-            <input type="text" id="first_name" class="form-control" nbInput fullWidth placeholder="First name"
-                 formControlName="first_name">
-          </div>
-        </div>
-          <div class="full-name-inputs">
-          <div class="form-group col-md-12">
-            <label class="label" for="last_name">Last Name</label>
-            <input type="text" id="last_name" class="form-control" nbInput fullWidth placeholder="Last Name"
-                 formControlName="last_name">
-          </div>
-        </div>
-        <div class="full-name-inputs">
-          <div class="form-group col-md-12">
-            <label class="label" for="birth_date">Birth Date</label>
-            <input [nbDatepicker]="datepicker" id="birth_date" class="form-control" nbInput fullWidth
-                   placeholder="" formControlName="birth_date" fieldSize="medium">
-            <nb-datepicker #datepicker></nb-datepicker>
-          </div>
-        </div>
-          <div class="full-name-inputs">
-          <div class="form-group col-md-12">
-            <label class="label" for="birth_place">Birth Place</label>
-            <input type="text" id="birth_place" class="form-control" nbInput fullWidth placeholder="birth place"
-                 formControlName="birth_place">
-          </div>
-        </div>
+        
         
         <div class="full-name-inputs">
           <div class="form-group col-md-12">
-            <label class="label" for="gender">Gender</label>
-            <select id="gender" class="form-control" nbInput fullWidth  formControlName="gender">
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
+            <label class="label" for="first_name">classe </label>
+            <input type="number" id="first_name" class="form-control" nbInput fullWidth placeholder="First name"
+                 formControlName="classe_id">
           </div>
         </div>
+  
         <div class="full-name-inputs">
           <div class="form-group col-md-12">
-            <label class="label" for="picture">Photo de profil</label>
-            <input-file
-              id="picture"
-              fileAccept="image/*"
-              fileLimit="1"
-              formControlName="picture"
-              class="left-rounded right-rounded"
-            ></input-file>
+            <label class="label" for="first_name">eleve </label>
+            <input type="number" id="first_name" class="form-control" nbInput fullWidth placeholder="First name"
+                 formControlName="student_id">
+          </div>
+        </div>
+
+        <div class="full-name-inputs">
+          <div class="form-group col-md-12">
+            <label class="label" for="first_name">annee scolaire</label>
+            <input type="number" id="first_name" class="form-control" nbInput fullWidth placeholder="First name"
+                 formControlName="school_year_id">
           </div>
         </div>
 
@@ -129,7 +74,7 @@
             <button
               type="button"
               class="AppButton btn-blue w-50"
-              (click)="saveUser()"
+              (click)="save()"
             >
               Enregistrer
             </button>
@@ -144,18 +89,63 @@
       <div class="col-lg-12">
         <nb-card>
           <nb-card-header>Ressources connexes</nb-card-header>
+
+
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+              <hr>
+              <label class="label" for="registration_number">Classe</label>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="classe"
+                    (keyup)="onKey3($event)" value="{{resultat3}}" #search>
+
+                   <div class="col-md-12">
+                    <ng-container *ngIf="inptShow3">
+                      <div class="show_search">
+                        <ng-container *ngFor="let classe of classes"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show3(classe.name,classe.id)"> {{classe.name}}</p></div>
+                        </ng-container>
+                      </div>
+                    </ng-container>
+                   </div>
+                
+            </div>
+          
+          </div>
     
           <div class="full-name-inputs">
             <div class="form-group col-md-12">
-              <label class="label" for="registration_number">Tuteur</label>
-              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="nom"
+             
+              <label class="label" for="registration_number">Eleves</label>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="matricule"
                     (keyup)="onKey($event)" value="{{resultat}}" #search>
 
                    <div class="col-md-12">
                     <ng-container *ngIf="inptShow">
                       <div class="show_search">
-                        <ng-container *ngFor="let tutor of tutors_search"> 
-                            <div><p class="text-secondary mb-1" (click)="click_Show(tutor.full_name,tutor.id)"> {{tutor.full_name}}</p></div>
+                        <ng-container *ngFor="let student of student_search"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show(student.full_name,student.id)"> {{student.full_name}}</p></div>
+                        </ng-container>
+                      </div>
+                    </ng-container>
+                   </div>
+                
+            </div>
+          
+          </div>
+
+
+          <div class="full-name-inputs">
+            <div class="form-group col-md-12">
+              
+              <label class="label" for="registration_number">Année scolaire</label>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="Année scolaire"
+                    (keyup)="onKey2($event)" value="{{resultat2}}" #search>
+
+                   <div class="col-md-12">
+                    <ng-container *ngIf="inptShow2">
+                      <div class="show_search">
+                        <ng-container *ngFor="let school_year of school_years"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show2(school_year.from_year,school_year.id)"> {{school_year.from_year}} - {{school_year.to_year}}</p></div>
                         </ng-container>
                       </div>
                     </ng-container>
@@ -173,7 +163,8 @@
     
           <div class="full-name-inputs">
             <div class="form-group col-md-12">
-             
+             <hr>
+             <hr>
             </div>
           
           </div>

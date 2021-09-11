@@ -18,13 +18,7 @@
           </div>
         </div>
 
-        <div class="full-name-inputs">
-          <div class="form-group col-md-12">
-            <label class="label" for="subject">subject</label>
-            <input type="text" id="subject" class="form-control" nbInput fullWidth placeholder="subject"
-                 formControlName="subject">
-          </div>
-        </div>
+     
 
         <div class="full-name-inputs">
           <div class="form-group col-md-12">
@@ -53,8 +47,8 @@
         <div class="full-name-inputs">
           <div class="form-group col-md-12">
             <label class="label" for="subject">Ecris par</label>
-            <input type="number" id="subject" class="form-control" nbInput fullWidth placeholder="subject"
-                 formControlName="char_user_id">
+            <input type="number" id="subject" class="form-control" nbInput fullWidth placeholder="chat user_id"
+                 formControlName="chat_user_id">
           </div>
         </div>
         
@@ -94,11 +88,26 @@
           <div class="full-name-inputs">
             <div class="form-group col-md-12">
               <hr>
-           
-                   <hr>
+              <label class="label" for="registration_number">Utilisateur</label>
+              <input type="text" id="registration_number" class="form-control" nbInput fullWidth placeholder="utilisateur chat"
+                    (keyup)="onKey($event)" value="{{resultat}}" #search>
+
+                   <div class="col-md-12">
+                    <ng-container *ngIf="inptShow">
+                      <div class="show_search">
+                        <ng-container *ngFor="let chat_user of chat_search"> 
+                            <div><p class="text-secondary mb-1" (click)="click_Show(chat_user.user.full_name,chat_user.id)"> {{chat_user.user.full_name}}</p></div>
+                        </ng-container>
+                      </div>
+                    </ng-container>
+                   </div>
+                
             </div>
           
           </div>
+
+
+          
         </nb-card>
       </div>
 
