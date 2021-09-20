@@ -33,6 +33,8 @@ export class StudentListComponent  {
       this.api.Classe.getList(
         {
           should_paginate: false,
+          _sort:'id',
+          _sortDir: 'asc',
           school_id: this.currentUser.teacher.school.id,
         }).subscribe((classes) => {
         this.classes = classes;

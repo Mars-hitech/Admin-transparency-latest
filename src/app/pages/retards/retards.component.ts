@@ -22,7 +22,8 @@ export class RetardsComponent {
     this.api.Retard.getList(
       {
         should_paginate: false,
-        _sortDir: 'desc',
+        _sort:'id',
+        _sortDir: 'asc',
         _includes: 'student,school_year',
       }).subscribe( retards => {
       this.data = [];

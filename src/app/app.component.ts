@@ -21,8 +21,8 @@ export class AppComponent implements OnInit {
    // url: 'http://localhost:3000',
     // apiEndpoint: 'http://transparency.local/api',
    // apiEndpoint: 'http://backend-env.eba-7mbe3mzm.us-east-1.elasticbeanstalk.com/api',
-    apiEndpoint: 'http://localhost/transparency-backend/public/api',
-   // apiEndpoint: 'https://transparency.pts-jeunes.cm/api',
+    //apiEndpoint: 'http://localhost/transparency-backend/public/api',
+    apiEndpoint: 'https://transparency.pts-jeunes.cm/api',
   };
 
   constructor(private analytics: AnalyticsService, private seoService: SeoService) {
